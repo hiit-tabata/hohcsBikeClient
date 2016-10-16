@@ -8,7 +8,10 @@
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "build:prod":"ng build --prod --base-href /admin/",
+    "build:dev":"ng build --dev --base-href /admin/",
+    "server":"ng serve"
   },
   "private": true,
   "dependencies": {
