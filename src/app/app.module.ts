@@ -5,6 +5,16 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+import { APP_BASE_HREF } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes';
+
+import { LoginModule } from './login/login.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { SharedModule } from './shared/shared.module';
+
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +22,11 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+		RouterModule.forRoot(routes),
+		LoginModule,
+		DashboardModule,
+		SharedModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
