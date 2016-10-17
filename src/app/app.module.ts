@@ -13,7 +13,7 @@ import { LoginModule } from './login/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 
-
+import { SDKModule } from './shared/sdk/index';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { SharedModule } from './shared/shared.module';
 		RouterModule.forRoot(routes),
 		LoginModule,
 		DashboardModule,
-		SharedModule.forRoot()
+		SharedModule.forRoot(),
+    SDKModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

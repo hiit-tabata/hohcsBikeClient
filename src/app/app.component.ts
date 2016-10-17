@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { environment } from '../environments/environment';
-console.log(environment);
 
 @Component({
   selector: 'app-root',

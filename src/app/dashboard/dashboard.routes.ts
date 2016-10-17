@@ -1,10 +1,12 @@
-import { Route } from '@angular/router';
+import { Route }                    from '@angular/router';
 
-import { HomeRoutes } from './home';
-import { BlankPageRoutes } from './blank-page';
-import { BSComponentRoutes } from './bs-component';
+import { HomeRoutes }               from './home';
+import { BlankPageRoutes }          from './blank-page';
+import { BSComponentRoutes }        from './bs-component';
+import { ClientsRoutes }            from './clients';
+import { ClientRoutes }             from './client';
 
-import { DashboardComponent } from './dashboard.component';
+import { DashboardComponent }       from './dashboard.component';
 
 export const DashboardRoutes: Route[] = [
   	{
@@ -13,7 +15,9 @@ export const DashboardRoutes: Route[] = [
     	children: [
 	    	...HomeRoutes,
 	    	...BSComponentRoutes,
-	    	...BlankPageRoutes
+	    	...BlankPageRoutes,
+         ...ClientsRoutes,
+         ...ClientRoutes
     	]
   	}
 ];

@@ -17,7 +17,10 @@
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "styles.css",
-        "./assets/sass/app.scss"
+        "./assets/sass/app.scss",
+        "../node_modules/primeng/resources/themes/omega/theme.css",
+        "../node_modules/primeng/resources/primeng.min.css",
+        "./assets/font-awesome/css/font-awesome.min.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
