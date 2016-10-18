@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { AuthService } from '../shared/auth/auth.service.ts';
 /**
 *	This class represents the lazy loaded DashboardComponent.
 */
@@ -12,7 +12,9 @@ import { Component } from '@angular/core';
 
 export class DashboardComponent {
 
-	constructor(){
+	constructor(
+		private authService:AuthService
+	){
 		console.log("hello DashboardComponent");
 	}
 }
