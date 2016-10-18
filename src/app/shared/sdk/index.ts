@@ -25,6 +25,7 @@ import { LoopBackAuth } from './services/core/auth.service';
 import { LoggerService } from './services/custom/logger.service';
 import { UserApi } from './services/custom/User';
 import { RecordApi } from './services/custom/Record';
+import { DataSampleApi } from './services/custom/DataSample';
 import { ClientApi } from './services/custom/Client';
 /**
 * IMPORTANT: API_PROVIDERS WILL BE DEPRECATED WHEN ANGULAR 2 IS STABLE
@@ -39,6 +40,7 @@ export const API_PROVIDERS: any[] = [
   JSONSearchParams,
   UserApi,
   RecordApi,
+  DataSampleApi,
   ClientApi
 ];
 export * from './models/index';

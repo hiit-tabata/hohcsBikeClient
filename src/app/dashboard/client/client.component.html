@@ -1,10 +1,25 @@
-<h1>Client - {{client.username||"downloading"}}</h1>
+<h3 class="first">Client - {{client.username||"downloading"}}</h3>
 <h3 class="first">Records</h3>
-<p-dataTable [value]="records">
-    <p-column field="id" header="id"></p-column>
-    <p-column field="dateTime" header="dateTime"></p-column>
-    <p-column field="duration" header="duration"></p-column>
-    <p-column field="ip" header="ip"></p-column>
-    <p-column field="location" header="location"></p-column>
-    <p-column field="deviceId" header="deviceId"></p-column>
-</p-dataTable>
+
+<table class="table" class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>dateTime</th>
+      <th>duration</th>
+      <th>ip</th>
+      <th>location</th>
+      <th>deviceId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of records" >
+      <th scope="row"><a routerLink="{{'/dashboard/record/'+record.id}}" >{{record.id}}</a></th>
+      <td>{{record.dateTime}}</td>
+      <td>{{record.duration}}</td>
+      <td>{{record.ip}}</td>
+      <td>{{record.location}}</td>
+      <td>{{record.deviceId}}</td>
+    </tr>
+  </tbody>
+</table>

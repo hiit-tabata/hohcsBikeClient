@@ -1,0 +1,40 @@
+<h3 class="first">Client - {{client.username||"downloading"}}</h3>
+
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title">Record</h4>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">id: {{record.id}}</li>
+    <li class="list-group-item">dateTime: {{record.dateTime}}</li>
+    <li class="list-group-item">duration: {{record.duration}}</li>
+    <li class="list-group-item">ip: {{record.ip}}</li>
+    <li class="list-group-item">location: {{record.location}}</li>
+    <li class="list-group-item">deviceId: {{record.deviceId}}</li>
+    <li class="list-group-item">clientId: {{record.clientId}}</li>
+    <li class="list-group-item">number dataSamples: {{dataSamples.length}}</li>
+  </ul>
+</div>
+
+<table class="table" class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>dateTime</th>
+      <th>sensorType</th>
+      <th>bleAddress</th>
+      <th>value</th>
+      <th>sensorId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dataSample of dataSamples" >
+      <td scope="row">{{dataSample.id}}</td>
+      <td>{{dataSample.dateTime}}</td>
+      <td>{{dataSample.sensorType}}</td>
+      <td>{{dataSample.bleAddress}}</td>
+      <td>{{dataSample.value}}</td>
+      <td>{{dataSample.sensorId}}</td>
+    </tr>
+  </tbody>
+</table>

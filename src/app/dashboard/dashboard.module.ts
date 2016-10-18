@@ -2,6 +2,7 @@ import { NgModule }                 from '@angular/core';
 import { CommonModule }             from '@angular/common';
 import { RouterModule }             from '@angular/router';
 
+import { RecordModule }               from './record/record.module';
 import { HomeModule }               from './home/home.module';
 import { ClientsModule }            from './clients/clients.module';
 import { ClientModule }             from './client/client.module';
@@ -20,7 +21,8 @@ import { SidebarComponent }         from '../shared/index';
     	BSComponentModule,
         BlankPageModule,
         ClientsModule,
-        ClientModule
+        ClientModule,
+        RecordModule
     ],
     declarations: [DashboardComponent, SidebarComponent],
     exports: [DashboardComponent, SidebarComponent]

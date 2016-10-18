@@ -1,10 +1,18 @@
 <h3 class="first">Clients</h3>
-<p-dataTable [value]="clients">
-    <p-column field="id" header="id"></p-column>
-    <p-column field="username" header="username"></p-column>
-    <p-column field="email" header="email"></p-column>
-</p-dataTable>
 
-<!-- <p-column field="year" header="Year (contains)" [filter]="true" filterMatchMode="contains"></p-column>
-<p-column field="brand" header="Brand (startsWith)" [filter]="true"></p-column>
-<p-column field="color" header="Color (endsWith)" [filter]="true" -->
+<table class="table" class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>username</th>
+      <th>email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients" >
+      <th scope="row"><a routerLink="{{'/dashboard/client/'+client.id}}" >{{client.id}}</a></th>
+      <td>{{client.username}}</td>
+      <td>{{client.email}}</td>
+    </tr>
+  </tbody>
+</table>

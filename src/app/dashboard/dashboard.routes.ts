@@ -5,6 +5,7 @@ import { BlankPageRoutes }          from './blank-page';
 import { BSComponentRoutes }        from './bs-component';
 import { ClientsRoutes }            from './clients';
 import { ClientRoutes }             from './client';
+import { RecordRoutes }             from './record';
 
 import { DashboardComponent }       from './dashboard.component';
 
@@ -17,7 +18,8 @@ export const DashboardRoutes: Route[] = [
 	    	...BSComponentRoutes,
 	    	...BlankPageRoutes,
          ...ClientsRoutes,
-         ...ClientRoutes
+         ...ClientRoutes,
+         ...RecordRoutes
     	]
   	}
 ];

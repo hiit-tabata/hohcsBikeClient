@@ -41,6 +41,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { UserApi } from './services/custom/User';
 import { RecordApi } from './services/custom/Record';
+import { DataSampleApi } from './services/custom/DataSample';
 import { ClientApi } from './services/custom/Client';
 
 @NgModule({
@@ -61,6 +62,7 @@ export class SDKModule {
       JSONSearchParams,
       UserApi,
       RecordApi,
+      DataSampleApi,
       ClientApi
       ]
     };
