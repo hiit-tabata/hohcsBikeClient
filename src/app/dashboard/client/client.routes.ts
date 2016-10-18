@@ -4,7 +4,7 @@ import { ClientComponent } from './client.component';
 
 export const ClientRoutes: Route[] = [
 	{
-		path: 'client',
+		path: 'client/:id',
 		component: ClientComponent
 	}
 ];

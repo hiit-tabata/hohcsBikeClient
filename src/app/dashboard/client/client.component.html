@@ -1,1 +1,10 @@
-<h1>This is client page</h1>
+<h1>Client - {{client.username||"downloading"}}</h1>
+<h3 class="first">Records</h3>
+<p-dataTable [value]="records">
+    <p-column field="id" header="id"></p-column>
+    <p-column field="dateTime" header="dateTime"></p-column>
+    <p-column field="duration" header="duration"></p-column>
+    <p-column field="ip" header="ip"></p-column>
+    <p-column field="location" header="location"></p-column>
+    <p-column field="deviceId" header="deviceId"></p-column>
+</p-dataTable>
