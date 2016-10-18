@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiDomain: "http://hohcs.holmantai.net/"
+  BASE_URL: "http://hohcs.holmantai.net",
+  API_VERSION: "api"
 };

@@ -15,6 +15,8 @@ import { SharedModule } from './shared/shared.module';
 
 import { SDKModule } from './shared/sdk/index';
 
+import { AuthModule } from './shared/auth/auth.module';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +29,8 @@ import { SDKModule } from './shared/sdk/index';
 		LoginModule,
 		DashboardModule,
 		SharedModule.forRoot(),
-    SDKModule.forRoot()
+    SDKModule.forRoot(),
+    AuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
