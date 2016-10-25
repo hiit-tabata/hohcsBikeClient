@@ -35,7 +35,7 @@ export class RecordComponent {
                 _record=>{
                     this.record = _record;
                     this.dataSamples = this.record.dataSamples;
-                    console.log(this.record);
+                    console.log(JSON.stringify(this.record));
                 },
                 err=>{   console.log(err);     }
             );

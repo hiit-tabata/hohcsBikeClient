@@ -1,6 +1,6 @@
 <h3 class="first">Client - {{client.username||"downloading"}}</h3>
 <h3 class="first">Records</h3>
-
+<div #qrCode></div>
 <table class="table" class="table table-striped">
   <thead class="thead-inverse">
     <tr>
@@ -10,6 +10,7 @@
       <th>ip</th>
       <th>location</th>
       <th>deviceId</th>
+      <th>delete</th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +21,7 @@
       <td>{{record.ip}}</td>
       <td>{{record.location}}</td>
       <td>{{record.deviceId}}</td>
+      <td><a  class="btn btn-default btn-danger" (click)="deleteRecord(record)">delete</a></td>
     </tr>
   </tbody>
 </table>
