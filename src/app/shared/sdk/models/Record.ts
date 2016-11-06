@@ -10,9 +10,12 @@ export interface RecordInterface {
   ip: string;
   location: string;
   deviceId: string;
+  averageSpeed?: number;
+  HighestConsecutiveSpeed?: number;
   id?: any;
   clientId?: any;
   dataSamples?: Array<DataSample>;
+  dataSamplesInSecond?: Array<DataSample>;
   client?: Client;
 }
 
@@ -22,9 +25,12 @@ export class Record implements RecordInterface {
   ip: string;
   location: string;
   deviceId: string;
+  averageSpeed: number;
+  HighestConsecutiveSpeed: number;
   id: any;
   clientId: any;
   dataSamples: Array<DataSample>;
+  dataSamplesInSecond: Array<DataSample>;
   client: Client;
   constructor(instance?: Record) {
     Object.assign(this, instance);

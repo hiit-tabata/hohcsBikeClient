@@ -1,4 +1,4 @@
-<h3 class="first">Client - {{client.username||"downloading"}}</h3>
+<h3 class="first">Client - {{(record.client)?record.client.username:"downloading"}}</h3>
 
 <div class="card">
   <div class="card-block">
@@ -12,11 +12,50 @@
     <li class="list-group-item">location: {{record.location}}</li>
     <li class="list-group-item">deviceId: {{record.deviceId}}</li>
     <li class="list-group-item">clientId: {{record.clientId}}</li>
-    <li class="list-group-item">number dataSamples: {{dataSamples.length}}</li>
+    <li class="list-group-item">number dataSamples: {{(dataSamplesCount == -1)?"downloading":dataSamplesCount}}</li>
   </ul>
 </div>
+<div  class="card">
+  <h4 class="card-title">Sensor rawData</h4>
+  <ul class="nav nav-tabs">
+    <li
+      class="nav-item"
+      *ngFor="let d of sensorEnable; let i = index; ">
+      <a
+        [class.selected] = "d"
+        class="nav-link"
+        (click)="toggleSensor(i)" >Sensor {{i+1}}</a>
+    </li>
+  </ul>
 
-<table class="table" class="table table-striped">
+  <nav class="nav nav-inline">
+  </nav>
+  <chart [type]="type" [data]="data" [options]="options"></chart>
+</div>
+
+
+<div  class="card">
+  <h4 class="card-title">Sensor cal</h4>
+  <ul class="nav nav-tabs">
+    <li
+      class="nav-item"
+      *ngFor="let option of calDataOption; let i = index; ">
+      <a
+        [class.selected] = "option.enable"
+        class="nav-link"
+        (click)="chooseCalResult(i)" >{{option.name}}</a>
+    </li>
+  </ul>
+
+  <nav class="nav nav-inline">
+  </nav>
+  <chart
+    [type]="type"
+    [data]="calData" 
+    [options]="options"></chart>
+</div>
+
+<table class="table" class="table table-striped" *ngIf="showRawData">
   <thead class="thead-inverse">
     <tr>
       <th>#</th>

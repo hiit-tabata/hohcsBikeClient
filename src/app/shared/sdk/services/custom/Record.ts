@@ -125,6 +125,99 @@ export class RecordApi extends BaseLoopBackApi {
   }
 
   /**
+   * Find a related item by id for dataSamplesInSecond.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param any fk Foreign key for dataSamplesInSecond
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Record` object.)
+   * </em>
+   */
+  public findByIdDataSamplesInSecond(id: any, fk: any) {
+    let method: string = "GET";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/dataSamplesInSecond/:fk";
+    let routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let postBody: any = {};
+    let urlParams: any = {};
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result.map((instance: Record) => new Record(instance));
+  }
+
+  /**
+   * Delete a related item by id for dataSamplesInSecond.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param any fk Foreign key for dataSamplesInSecond
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public destroyByIdDataSamplesInSecond(id: any, fk: any) {
+    let method: string = "DELETE";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/dataSamplesInSecond/:fk";
+    let routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let postBody: any = {};
+    let urlParams: any = {};
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * Update a related item by id for dataSamplesInSecond.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param any fk Foreign key for dataSamplesInSecond
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Record` object.)
+   * </em>
+   */
+  public updateByIdDataSamplesInSecond(id: any, fk: any, data: any = undefined) {
+    let method: string = "PUT";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/dataSamplesInSecond/:fk";
+    let routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let postBody: any = {
+      data: data
+    };
+    let urlParams: any = {};
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
    * Fetches belongsTo relation client.
    *
    * @param any id PersistedModel id
@@ -260,6 +353,122 @@ export class RecordApi extends BaseLoopBackApi {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/record/:id/dataSamples/count";
+    let routeParams: any = {
+      id: id
+    };
+    let postBody: any = {};
+    let urlParams: any = {};
+    if (where) urlParams.where = where;
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * Queries dataSamplesInSecond of record.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param object filter 
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Record` object.)
+   * </em>
+   */
+  public getDataSamplesInSecond(id: any, filter: LoopBackFilter = undefined) {
+    let method: string = "GET";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/dataSamplesInSecond";
+    let routeParams: any = {
+      id: id
+    };
+    let postBody: any = {};
+    let urlParams: any = {};
+    if (filter) urlParams.filter = filter;
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * Creates a new instance in dataSamplesInSecond of this model.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Record` object.)
+   * </em>
+   */
+  public createDataSamplesInSecond(id: any, data: any = undefined) {
+    let method: string = "POST";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/dataSamplesInSecond";
+    let routeParams: any = {
+      id: id
+    };
+    let postBody: any = {
+      data: data
+    };
+    let urlParams: any = {};
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * Deletes all dataSamplesInSecond of this model.
+   *
+   * @param any id PersistedModel id
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public deleteDataSamplesInSecond(id: any) {
+    let method: string = "DELETE";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/dataSamplesInSecond";
+    let routeParams: any = {
+      id: id
+    };
+    let postBody: any = {};
+    let urlParams: any = {};
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * Counts dataSamplesInSecond of record.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param object where Criteria to match model instances
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `count` – `{number}` - 
+   */
+  public countDataSamplesInSecond(id: any, where: any = undefined) {
+    let method: string = "GET";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/dataSamplesInSecond/count";
     let routeParams: any = {
       id: id
     };
@@ -697,6 +906,39 @@ export class RecordApi extends BaseLoopBackApi {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/record/:id/dataSamples";
+    let routeParams: any = {
+      id: id
+    };
+    let postBody: any = {
+      data: data
+    };
+    let urlParams: any = {};
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * Creates a new instance in dataSamplesInSecond of this model.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Record` object.)
+   * </em>
+   */
+  public createManyDataSamplesInSecond(id: any, data: Array<any> = undefined) {
+    let method: string = "POST";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/dataSamplesInSecond";
     let routeParams: any = {
       id: id
     };
