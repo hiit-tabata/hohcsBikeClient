@@ -6,7 +6,7 @@
   class="table table-striped">
   <thead class="thead-inverse">
     <tr>
-      <th>#</th>
+      <th>User</th>
       <th>dateTime</th>
       <th>duration</th>
       <th>no of dataSamples</th>
@@ -16,7 +16,7 @@
     <tr *ngFor="let record of records" >
       <th scope="row">
         <a routerLink="{{'/dashboard/record/'+record.id}}" >
-          {{record.id}}
+          {{record.client.username}}
         </a>
       </th>
       <td>{{record.dateTime}}</td>

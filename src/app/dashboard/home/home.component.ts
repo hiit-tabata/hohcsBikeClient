@@ -38,7 +38,8 @@ export class HomeComponent {
 				dateTime:{
 					gt: Date.now() - 1000*60*60*24*7 //7 days
 				}
-			}
+			},
+			include:["client"]
 		}).subscribe(
 				_records=>{
 						this.records = _records;
