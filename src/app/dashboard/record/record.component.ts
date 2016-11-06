@@ -23,6 +23,7 @@ export class RecordComponent {
     private recordId:string = "";
     private showRawData:boolean = false;
     private sensorEnable:boolean[]=[false,false,false,true,false,false];
+    private downloadingData = false;
 
     private calDataOption=[{
         name:"hall sensor relative time",
@@ -68,7 +69,6 @@ export class RecordComponent {
         this.route.params.forEach((params: Params) => {
             this.recordId = params['id'];
 
-            //this.carService.getCarsMedium().then(cars => this.cars = cars);
             this.recordApi.findById(this.recordId,{include:["client"]}).subscribe(
                 _record=>{
                     this.record = _record;
@@ -91,15 +91,19 @@ export class RecordComponent {
     }
 
     toggleSensor(index:number){
-        this.sensorEnable[index] = !this.sensorEnable[index];
+        if(this.downloadingData) return;
+        for(let i = 0 ; i < this.sensorEnable.length; i++)
+            this.sensorEnable[i] = false;
+        this.sensorEnable[index] = true;
         this.updateSensorData();
     }
 
     //open the cal data tab
     chooseCalResult(index:number){
+        if(this.downloadingData) return;
         for(let item of this.calDataOption)
             item.enable = false;
-        this.calDataOption[index].enable = false;
+        this.calDataOption[index].enable = true;
         switch(index){
             case 0:
                 this.calHallRelativeTime();
@@ -109,6 +113,7 @@ export class RecordComponent {
     }
 
     calHallRelativeTime(){
+        this.downloadingData = true;
         this.dataSampleApi.find({
             where:{
                 sensorId: 6,
@@ -144,6 +149,7 @@ export class RecordComponent {
                     lastHallRecordTime = sample.dateTime;
                 }
             }
+            this.downloadingData = false;
         });
     }
 
@@ -161,8 +167,7 @@ export class RecordComponent {
                     recordId:this.recordId
                 });
 
-
-        console.log(filter);
+        this.downloadingData = true;
         this.dataSampleApi.find(filter).subscribe(result=>{
            let tmp={};
 
@@ -206,6 +211,7 @@ export class RecordComponent {
             for(let lineName in tmp){
                 this.data.datasets.push(tmp[lineName]);
             }
+            this.downloadingData = false;
         });
     }
 }
