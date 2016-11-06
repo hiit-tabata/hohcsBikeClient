@@ -36,15 +36,13 @@
 <table class="table" class="table table-striped">
   <thead class="thead-inverse">
     <tr>
-      <th>#</th>
       <th>username</th>
       <th>email</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let client of clients" >
-      <th scope="row"><a routerLink="{{'/dashboard/client/'+client.id}}" >{{client.id}}</a></th>
-      <td>{{client.username}}</td>
+      <th scope="row"><a routerLink="{{'/dashboard/client/'+client.id}}" >{{client.username}}</a></th>
       <td>{{client.email}}</td>
     </tr>
   </tbody>

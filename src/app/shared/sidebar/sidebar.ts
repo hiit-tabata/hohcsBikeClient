@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth/auth.service.ts';
 
 @Component({
 	selector: 'sidebar-cmp',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 
 export class SidebarComponent {
+	userName:string = "loading";
 	showMenu: string = '';
 	addExpandClass(element: any) {
 		if (element === this.showMenu) {
@@ -14,5 +16,12 @@ export class SidebarComponent {
 		} else {
 			this.showMenu = element;
 		}
+	}
+	constructor(
+		private authService:AuthService
+	){
+		this.authService.getUser().subscribe(user=>{
+			this.userName = user.username;
+		});
 	}
 }
