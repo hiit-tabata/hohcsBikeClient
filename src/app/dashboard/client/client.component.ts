@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ClientApi }         from '../../shared/sdk/services/custom/Client';
 import { Client }            from '../../shared/sdk/models/Client';
 import { RecordApi }         from '../../shared/sdk/services/custom/Record';
@@ -6,6 +6,7 @@ import { Record }            from '../../shared/sdk/models/Record';
 import { Router, ActivatedRoute, Params }            from '@angular/router';
 import * as qrcode            from 'qrcode-generator';
 import {ElementRef, Renderer, ViewChild} from '@angular/core';
+
 
 
 interface QrCodeJson{
@@ -26,11 +27,14 @@ interface QrCodeJson{
     templateUrl: './client.component.html'
 })
 
-export class ClientComponent implements OnInit {
+export class ClientComponent implements OnInit, OnDestroy {
     @ViewChild('qrCode') qrCodeHolder:ElementRef;
     private clientId: string;
     private client:Client = new Client();
     private records:Record[] = [];
+    private duration:number = 1200; //2 mins
+    private keyDownListener:any;
+    private advanceUser:boolean = false;
 
     constructor(
         private clientApi:ClientApi,
@@ -38,10 +42,32 @@ export class ClientComponent implements OnInit {
         private route: ActivatedRoute,
         private router:Router,
         private renderer: Renderer
-    ) {}
+    ) {    }
 
     ngOnInit() {
         this.getRecords();
+
+        let keycount = 0;
+        this.keyDownListener = document.body.addEventListener('keydown', (e)=> {
+            if( e.keyCode == 13)
+            {
+                keycount++;
+                console.log(keycount);
+                if(keycount > 7){
+                    alert("you are chi hang! Hi");
+                    this.advanceUser = true;
+                }
+            }else
+                keycount=0;
+        });​​​​​​​
+    }
+
+    onMinsValueChange(){
+        this.createQrCode(8, "L", this.getQrCodePram(this.client.email,this.client.username));
+    }
+
+    ngOnDestroy(){
+        document.body.removeEventListener(this.keyDownListener);
     }
 
     public getRecords(){
@@ -69,7 +95,7 @@ export class ClientComponent implements OnInit {
             "email": email,
             "password":password,
             "demo":false,
-            "duration": 1200,
+            "duration": this.duration,
             "theme":"loop",
             "log": true,
             "saveLocal": true

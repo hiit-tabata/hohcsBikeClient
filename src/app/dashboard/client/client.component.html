@@ -1,6 +1,7 @@
 <h3 class="first">Client - {{client.username||"downloading"}}</h3>
 <h3 class="first">Records</h3>
 <div #qrCode></div>
+<input type="number" [(ngModel)]="duration" *ngIf="advanceUser" (ngModelChange)="onMinsValueChange($event)"/>
 <table class="table" class="table table-striped">
   <thead class="thead-inverse">
     <tr>
