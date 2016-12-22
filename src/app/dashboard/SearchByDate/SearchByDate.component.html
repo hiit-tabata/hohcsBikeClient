@@ -1,0 +1,32 @@
+<h3 class="first">SearchByDate</h3>
+<datepicker [(ngModel)]="selectedDate" [showWeeks]="true"></datepicker>
+<button (click)="searchDate()">Search</button>
+<table
+  *ngIf="records.length > 0"
+  class="table"
+  class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>User</th>
+      <th>dateTime</th>
+      <th>duration</th>
+      <th>no of dataSamples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of records" >
+      <th scope="row">
+        <a routerLink="{{'/dashboard/record/'+record.id}}" >
+          {{record.client.username}}
+        </a>
+      </th>
+      <td>{{record.dateTime}}</td>
+      <td>{{record.duration}}</td>
+      <td>{{recordsDataSamplesCount[record.id]}}</td>
+    </tr>
+  </tbody>
+</table>
+<div
+  *ngIf="records.length == 0">
+  <h3>no records found</h3>
+</div>
