@@ -38,10 +38,16 @@ export class SearchByDateComponent {
 		this.recordsDataSamplesCount = {};
 		this.recordApi.find({
 			where:{
-				dateTime:{
-					gt: this.selectedDate.getTime(), //7 days
-					lt: this.selectedDate.getTime()+ 1000*60*60*24 -10
-				}
+				and: [{
+					dateTime:{
+						gt: this.selectedDate.getTime()
+					}
+				},
+				{
+					dateTime:{
+						lt: this.selectedDate.getTime()+ 1000*60*60*24 -10
+					}
+				}]
 			},
 			include:["client"]
 		}).subscribe(
