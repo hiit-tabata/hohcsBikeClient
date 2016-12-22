@@ -40,12 +40,12 @@ export class SearchByDateComponent {
 			where:{
 				and: [{
 					dateTime:{
-						gt: this.selectedDate.getTime()
+						gt: this.selectedDate.toISOString()
 					}
 				},
 				{
 					dateTime:{
-						lt: this.selectedDate.getTime()+ 1000*60*60*24 -10
+						lt: new Date(this.selectedDate.getTime() + 1*24*60*60*1000).toISOString()
 					}
 				}]
 			},
