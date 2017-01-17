@@ -21,7 +21,7 @@
   <tbody>
     <tr *ngFor="let record of records" >
       <th scope="row"><a routerLink="{{'/dashboard/record/'+record.id}}" >{{record.id}}</a></th>
-      <td>{{record.dateTime}}</td>
+      <td>{{record.dateTime  | date: 'yMMMdjms'}}</td>
       <td>{{record.duration}}</td>
       <td>{{record.ip}}</td>
       <td>{{record.location}}</td>

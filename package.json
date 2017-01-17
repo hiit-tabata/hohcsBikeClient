@@ -30,6 +30,7 @@
     "chart.js": "^2.3.0",
     "core-js": "^2.4.1",
     "jquery": "^3.1.1",
+    "moment": "^2.17.1",
     "ng2-bootstrap": "^1.1.14",
     "primeng": "^1.0.0-beta.17",
     "qrcode-generator": "^1.0.7",

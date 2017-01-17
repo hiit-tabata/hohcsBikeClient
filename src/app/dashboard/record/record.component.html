@@ -6,7 +6,7 @@
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">id: {{record.id}}</li>
-    <li class="list-group-item">dateTime: {{record.dateTime}}</li>
+    <li class="list-group-item">dateTime: {{record.dateTime | date: 'yMMMdjms'}}</li>
     <li class="list-group-item">duration: {{record.duration}}</li>
     <li class="list-group-item">ip: {{record.ip}}</li>
     <li class="list-group-item">location: {{record.location}}</li>

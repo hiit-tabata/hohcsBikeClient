@@ -7,6 +7,7 @@ import { Router, ActivatedRoute, Params }            from '@angular/router';
 import {ElementRef, Renderer, ViewChild} from '@angular/core';
 import { DataSample }                       from '../../shared/sdk/models/DataSample';
 import { DataSampleApi }                       from '../../shared/sdk/services/custom/DataSample';
+import * as moment from 'moment';
 
 @Component({
 	selector: 'home-cmp',

@@ -20,7 +20,7 @@
           {{record.client.username}}
         </a>
       </th>
-      <td>{{record.dateTime}}</td>
+      <td>{{record.dateTime  | date: 'yMMMdjms'}}</td>
       <td>{{record.duration}}</td>
       <td>{{recordsDataSamplesCount[record.id]}}</td>
     </tr>
