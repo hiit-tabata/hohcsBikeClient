@@ -183,12 +183,13 @@ export class RecordComponent {
             this.data={
                 datasets:[]
             };
-
+ 
+            let sensorName = ["none", "left back", "right back", "right pat", "left pat", "hall"];
 
             for (let sensor = 0 ; sensor<6; sensor++){
                 if(this.sensorEnable[sensor]){
                     tmp[(sensor+1)] = {
-                        label: "sensor "+ (sensor+1),
+                        label: sensorName[sensor],
                         data:[],
                         backgroundColor:  theColor.shift(),
                         pointHoverRadius:0,
