@@ -1,0 +1,49 @@
+<h3 class="first">Clients</h3>
+<button type="button" class="btn btn-default " (click)="showDialog()">+</button>
+
+<p-dialog
+  #addClient
+  header="Add Client"
+  [(visible)]="display"
+  resizable = false
+  draggable = false
+  closable = true
+  minWidth="80%" >
+  <div class="input-group">
+    <label>Username</label>
+    <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2" [(ngModel)]="username">
+  </div>
+  <!-- <div class="input-group">
+    <label>Email</label>
+    <input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon2" [(ngModel)]="email">
+    <span class="input-group-addon" id="basic-addon2">@hohcs.holmantai.net</span>
+  </div> -->
+  <!-- <div class="input-group">
+    <label>password</label>
+  </div> -->
+  <!-- <div  class="input-group">
+    <input type="text" class="form-control" placeholder="Password" aria-describedby="sizing-addon2" [(ngModel)]="password">
+  </div> -->
+  <div class="input-group">
+    <button type="button" class="btn btn-default " (click)="submitAddClient()">Submit</button>
+  </div>
+</p-dialog>
+
+  <!-- <div class="input-group-btn"></div>
+
+{username: 'admin', email: 'admin@admin.admin', password: 'admin'} -->
+
+<table class="table" class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>username</th>
+      <th>email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients" >
+      <th scope="row"><a routerLink="{{'/dashboard/client/'+client.id}}" >{{client.username}}</a></th>
+      <td>{{client.email}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -7,6 +7,7 @@ import { ClientsRoutes }            from './clients';
 import { ClientRoutes }             from './client';
 import { RecordRoutes }             from './record';
 import { SearchByDateRoute }        from './SearchByDate';
+import { DebugRoutes }              from './debug';
 
 import { DashboardComponent }       from './dashboard.component';
 
@@ -21,7 +22,8 @@ export const DashboardRoutes: Route[] = [
          ...ClientsRoutes,
          ...ClientRoutes,
          ...RecordRoutes,
-         ...SearchByDateRoute
+         ...SearchByDateRoute,
+         ...DebugRoutes
     	]
   	}
 ];
