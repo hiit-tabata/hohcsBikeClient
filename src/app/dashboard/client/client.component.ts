@@ -6,6 +6,7 @@ import { Record }            from '../../shared/sdk/models/Record';
 import { Router, ActivatedRoute, Params }            from '@angular/router';
 import * as qrcode            from 'qrcode-generator';
 import {ElementRef, Renderer, ViewChild} from '@angular/core';
+import { timeFix }                      from '../../shared/utils/timeFix';
 
 
 
@@ -79,7 +80,9 @@ export class ClientComponent implements OnInit, OnDestroy {
                 _client=>{
                     this.client = _client;
                     this.records = this.client.records;
-                    // console.log(this.client);
+                    for(var record of this.records)
+                        record.dateTime = timeFix(record.dateTime);
+                    console.log(this.client);
                     this.createQrCode(8, "L", this.getQrCodePram(_client.email,_client.username));
                 },
                 err=>{   console.log(err);     }

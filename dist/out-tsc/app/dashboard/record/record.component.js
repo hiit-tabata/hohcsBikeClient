@@ -14,6 +14,7 @@ import { RecordApi } from '../../shared/sdk/services/custom/Record';
 import { Record } from '../../shared/sdk/models/Record';
 import { DataSampleApi } from '../../shared/sdk/services/custom/DataSample';
 import { Router, ActivatedRoute } from '@angular/router';
+import { timeFix } from '../../shared/utils/timeFix';
 export var RecordComponent = (function () {
     function RecordComponent(clientApi, recordApi, route, router, dataSampleApi) {
         this.clientApi = clientApi;
@@ -70,9 +71,11 @@ export var RecordComponent = (function () {
             _this.recordId = params['id'];
             _this.recordApi.findById(_this.recordId, { include: ["client"] }).subscribe(function (_record) {
                 _this.record = _record;
+                _this.record.dateTime = timeFix(_this.record.dateTime);
                 _this.dataSamples = _this.record.dataSamples;
-                console.log(JSON.stringify(_this.record));
-                console.log(_this.record);
+                var records = JSON.parse(_record.data);
+                console.dir(_record);
+                console.dir(records);
             }, function (err) { console.log(err); });
             _this.dataSampleApi.count({
                 recordId: params['id']

@@ -6,6 +6,7 @@ import { Record }                           from '../../shared/sdk/models/Record
 import { DataSample }                       from '../../shared/sdk/models/DataSample';
 import { DataSampleApi }                       from '../../shared/sdk/services/custom/DataSample';
 import { Router, ActivatedRoute, Params }            from '@angular/router';
+import { timeFix }                          from '../../shared/utils/timeFix';
 
 
 @Component({
@@ -78,9 +79,12 @@ export class RecordComponent {
             this.recordApi.findById(this.recordId,{include:["client"]}).subscribe(
                 _record=>{
                     this.record = _record;
+                    this.record.dateTime = timeFix(this.record.dateTime);
                     this.dataSamples = this.record.dataSamples;
-                    console.log(JSON.stringify(this.record));
-                    console.log(this.record)
+                    // console.log(JSON.stringify(this.record));
+                    let records = JSON.parse(_record.data);
+                    console.dir(_record);
+                    console.dir(records);
                 },
                 err=>{   console.log(err);     }
             );

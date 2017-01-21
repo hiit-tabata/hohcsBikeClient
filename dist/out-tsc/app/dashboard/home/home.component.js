@@ -13,6 +13,7 @@ import { RecordApi } from '../../shared/sdk/services/custom/Record';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Renderer } from '@angular/core';
 import { DataSampleApi } from '../../shared/sdk/services/custom/DataSample';
+import { timeFix } from '../../shared/utils/timeFix';
 export var HomeComponent = (function () {
     function HomeComponent(clientApi, recordApi, route, dataSampleApi, router, renderer) {
         this.clientApi = clientApi;
@@ -39,17 +40,21 @@ export var HomeComponent = (function () {
             include: ["client"]
         }).subscribe(function (_records) {
             _this.records = _records;
-            var _loop_1 = function(record) {
-                _this.recordsDataSamplesCount[record.id] = "loading";
+            for (var _i = 0, _a = _this.records; _i < _a.length; _i++) {
+                var record = _a[_i];
+                record.dateTime = timeFix(record.dateTime);
+            }
+            var _loop_1 = function(record_1) {
+                _this.recordsDataSamplesCount[record_1.id] = "loading";
                 _this.dataSampleApi.count({
-                    recordId: record.id
+                    recordId: record_1.id
                 }).subscribe(function (result) {
-                    _this.recordsDataSamplesCount[record.id] = result.count;
+                    _this.recordsDataSamplesCount[record_1.id] = result.count;
                 });
             };
-            for (var _i = 0, _records_1 = _records; _i < _records_1.length; _i++) {
-                var record = _records_1[_i];
-                _loop_1(record);
+            for (var _b = 0, _records_1 = _records; _b < _records_1.length; _b++) {
+                var record_1 = _records_1[_b];
+                _loop_1(record_1);
             }
         }, function (err) { console.log(err); });
     };

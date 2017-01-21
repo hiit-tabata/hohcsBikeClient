@@ -22,7 +22,6 @@ export class ClientsComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        //this.carService.getCarsMedium().then(cars => this.cars = cars);
         this.clientApi.find().subscribe(
             _clients=>{
                 this.clients = _clients;
