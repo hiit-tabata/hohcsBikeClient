@@ -43,6 +43,7 @@ import { UserApi } from './services/custom/User';
 import { RecordApi } from './services/custom/Record';
 import { DataSampleApi } from './services/custom/DataSample';
 import { ClientApi } from './services/custom/Client';
+import { TagApi } from './services/custom/Tag';
 
 @NgModule({
   imports:      [ CommonModule, HttpModule ],
@@ -63,7 +64,8 @@ export class SDKModule {
       UserApi,
       RecordApi,
       DataSampleApi,
-      ClientApi
+      ClientApi,
+      TagApi
       ]
     };
   }

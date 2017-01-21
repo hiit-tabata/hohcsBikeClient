@@ -1,7 +1,8 @@
 /* tslint:disable */
 import {
   DataSample,
-  Client
+  Client,
+  Tag
 } from '../index';
 
 export interface RecordInterface {
@@ -10,13 +11,19 @@ export interface RecordInterface {
   ip: string;
   location: string;
   deviceId: string;
-  averageSpeed?: number;
-  HighestConsecutiveSpeed?: number;
+  remarks?: string;
+  valid?: boolean;
+  processed?: boolean;
+  data?: string;
+  dataTypes?: string;
+  sensorIds?: string;
+  bleAddress?: string;
   id?: any;
   clientId?: any;
+  tagId?: any;
   dataSamples?: Array<DataSample>;
-  dataSamplesInSecond?: Array<DataSample>;
   client?: Client;
+  tags?: Array<Tag>;
 }
 
 export class Record implements RecordInterface {
@@ -25,13 +32,19 @@ export class Record implements RecordInterface {
   ip: string;
   location: string;
   deviceId: string;
-  averageSpeed: number;
-  HighestConsecutiveSpeed: number;
+  remarks: string;
+  valid: boolean;
+  processed: boolean;
+  data: string;
+  dataTypes: string;
+  sensorIds: string;
+  bleAddress: string;
   id: any;
   clientId: any;
+  tagId: any;
   dataSamples: Array<DataSample>;
-  dataSamplesInSecond: Array<DataSample>;
   client: Client;
+  tags: Array<Tag>;
   constructor(instance?: Record) {
     Object.assign(this, instance);
   }

@@ -5,6 +5,7 @@ import {
 
 export interface ClientInterface {
   centerId?: string;
+  remarks?: string;
   realm?: string;
   username?: string;
   password: string;
@@ -22,6 +23,7 @@ export interface ClientInterface {
 
 export class Client implements ClientInterface {
   centerId: string;
+  remarks: string;
   realm: string;
   username: string;
   password: string;

@@ -9,19 +9,17 @@ import { JSONSearchParams } from '../core/search.params';
 import { ErrorHandler } from '../core/error.service';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
-import { Record } from '../../models/Record';
-import { DataSample } from '../../models/DataSample';
-import { Client } from '../../models/Client';
 import { Tag } from '../../models/Tag';
+import { Record } from '../../models/Record';
 
 // Making Sure EventSource Type is available to avoid compilation issues.
 declare var EventSource: any;
 
 /**
- * Api services for the `Record` model.
+ * Api services for the `Tag` model.
  */
 @Injectable()
-export class RecordApi extends BaseLoopBackApi {
+export class TagApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(Http) http: Http,
@@ -33,11 +31,11 @@ export class RecordApi extends BaseLoopBackApi {
   }
 
   /**
-   * Find a related item by id for dataSamples.
+   * Find a related item by id for records.
    *
    * @param any id PersistedModel id
    *
-   * @param any fk Foreign key for dataSamples
+   * @param any fk Foreign key for records
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -45,13 +43,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
-  public findByIdDataSamples(id: any, fk: any) {
+  public findByIdRecords(id: any, fk: any) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples/:fk";
+    "/tags/:id/records/:fk";
     let routeParams: any = {
       id: id,
       fk: fk
@@ -59,15 +57,15 @@ export class RecordApi extends BaseLoopBackApi {
     let postBody: any = {};
     let urlParams: any = {};
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
+    return result.map((instance: Tag) => new Tag(instance));
   }
 
   /**
-   * Delete a related item by id for dataSamples.
+   * Delete a related item by id for records.
    *
    * @param any id PersistedModel id
    *
-   * @param any fk Foreign key for dataSamples
+   * @param any fk Foreign key for records
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -75,10 +73,10 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public destroyByIdDataSamples(id: any, fk: any) {
+  public destroyByIdRecords(id: any, fk: any) {
     let method: string = "DELETE";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples/:fk";
+    "/tags/:id/records/:fk";
     let routeParams: any = {
       id: id,
       fk: fk
@@ -90,11 +88,11 @@ export class RecordApi extends BaseLoopBackApi {
   }
 
   /**
-   * Update a related item by id for dataSamples.
+   * Update a related item by id for records.
    *
    * @param any id PersistedModel id
    *
-   * @param any fk Foreign key for dataSamples
+   * @param any fk Foreign key for records
    *
    * @param object data Request data.
    *
@@ -106,13 +104,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
-  public updateByIdDataSamples(id: any, fk: any, data: any = undefined) {
+  public updateByIdRecords(id: any, fk: any, data: any = undefined) {
     let method: string = "PUT";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples/:fk";
+    "/tags/:id/records/:fk";
     let routeParams: any = {
       id: id,
       fk: fk
@@ -126,130 +124,7 @@ export class RecordApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation client.
-   *
-   * @param any id PersistedModel id
-   *
-   * @param boolean refresh 
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public getClient(id: any, refresh: any = undefined) {
-    let method: string = "GET";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/client";
-    let routeParams: any = {
-      id: id
-    };
-    let postBody: any = {};
-    let urlParams: any = {};
-    if (refresh) urlParams.refresh = refresh;
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Find a related item by id for tags.
-   *
-   * @param any id PersistedModel id
-   *
-   * @param any fk Foreign key for tags
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public findByIdTags(id: any, fk: any) {
-    let method: string = "GET";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags/:fk";
-    let routeParams: any = {
-      id: id,
-      fk: fk
-    };
-    let postBody: any = {};
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
-  }
-
-  /**
-   * Delete a related item by id for tags.
-   *
-   * @param any id PersistedModel id
-   *
-   * @param any fk Foreign key for tags
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * This method returns no data.
-   */
-  public destroyByIdTags(id: any, fk: any) {
-    let method: string = "DELETE";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags/:fk";
-    let routeParams: any = {
-      id: id,
-      fk: fk
-    };
-    let postBody: any = {};
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Update a related item by id for tags.
-   *
-   * @param any id PersistedModel id
-   *
-   * @param any fk Foreign key for tags
-   *
-   * @param object data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public updateByIdTags(id: any, fk: any, data: any = undefined) {
-    let method: string = "PUT";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags/:fk";
-    let routeParams: any = {
-      id: id,
-      fk: fk
-    };
-    let postBody: any = {
-      data: data
-    };
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Queries dataSamples of record.
+   * Queries records of tag.
    *
    * @param any id PersistedModel id
    *
@@ -261,13 +136,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
-  public getDataSamples(id: any, filter: LoopBackFilter = undefined) {
+  public getRecords(id: any, filter: LoopBackFilter = undefined) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples";
+    "/tags/:id/records";
     let routeParams: any = {
       id: id
     };
@@ -279,7 +154,7 @@ export class RecordApi extends BaseLoopBackApi {
   }
 
   /**
-   * Creates a new instance in dataSamples of this model.
+   * Creates a new instance in records of this model.
    *
    * @param any id PersistedModel id
    *
@@ -293,13 +168,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
-  public createDataSamples(id: any, data: any = undefined) {
+  public createRecords(id: any, data: any = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples";
+    "/tags/:id/records";
     let routeParams: any = {
       id: id
     };
@@ -312,7 +187,7 @@ export class RecordApi extends BaseLoopBackApi {
   }
 
   /**
-   * Deletes all dataSamples of this model.
+   * Deletes all records of this model.
    *
    * @param any id PersistedModel id
    *
@@ -322,10 +197,10 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public deleteDataSamples(id: any) {
+  public deleteRecords(id: any) {
     let method: string = "DELETE";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples";
+    "/tags/:id/records";
     let routeParams: any = {
       id: id
     };
@@ -336,7 +211,7 @@ export class RecordApi extends BaseLoopBackApi {
   }
 
   /**
-   * Counts dataSamples of record.
+   * Counts records of tag.
    *
    * @param any id PersistedModel id
    *
@@ -350,126 +225,10 @@ export class RecordApi extends BaseLoopBackApi {
    *
    *  - `count` – `{number}` - 
    */
-  public countDataSamples(id: any, where: any = undefined) {
+  public countRecords(id: any, where: any = undefined) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples/count";
-    let routeParams: any = {
-      id: id
-    };
-    let postBody: any = {};
-    let urlParams: any = {};
-    if (where) urlParams.where = where;
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Queries tags of record.
-   *
-   * @param any id PersistedModel id
-   *
-   * @param object filter 
-   *
-   * @returns object[] An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public getTags(id: any, filter: LoopBackFilter = undefined) {
-    let method: string = "GET";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags";
-    let routeParams: any = {
-      id: id
-    };
-    let postBody: any = {};
-    let urlParams: any = {};
-    if (filter) urlParams.filter = filter;
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Creates a new instance in tags of this model.
-   *
-   * @param any id PersistedModel id
-   *
-   * @param object data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public createTags(id: any, data: any = undefined) {
-    let method: string = "POST";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags";
-    let routeParams: any = {
-      id: id
-    };
-    let postBody: any = {
-      data: data
-    };
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Deletes all tags of this model.
-   *
-   * @param any id PersistedModel id
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * This method returns no data.
-   */
-  public deleteTags(id: any) {
-    let method: string = "DELETE";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags";
-    let routeParams: any = {
-      id: id
-    };
-    let postBody: any = {};
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Counts tags of record.
-   *
-   * @param any id PersistedModel id
-   *
-   * @param object where Criteria to match model instances
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * Data properties:
-   *
-   *  - `count` – `{number}` - 
-   */
-  public countTags(id: any, where: any = undefined) {
-    let method: string = "GET";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags/count";
+    "/tags/:id/records/count";
     let routeParams: any = {
       id: id
     };
@@ -493,20 +252,20 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
   public create(data: any = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record";
+    "/tags";
     let routeParams: any = {};
     let postBody: any = {
       data: data
     };
     let urlParams: any = {};
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
+    return result.map((instance: Tag) => new Tag(instance));
   }
 
   /**
@@ -522,20 +281,20 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
   public upsert(data: any = undefined) {
     let method: string = "PUT";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record";
+    "/tags";
     let routeParams: any = {};
     let postBody: any = {
       data: data
     };
     let urlParams: any = {};
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
+    return result.map((instance: Tag) => new Tag(instance));
   }
 
   /**
@@ -551,13 +310,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
   public replaceOrCreate(data: any = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/replaceOrCreate";
+    "/tags/replaceOrCreate";
     let routeParams: any = {};
     let postBody: any = {
       data: data
@@ -582,13 +341,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
   public upsertWithWhere(where: any = undefined, data: any = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/upsertWithWhere";
+    "/tags/upsertWithWhere";
     let routeParams: any = {};
     let postBody: any = {
       data: data
@@ -596,7 +355,7 @@ export class RecordApi extends BaseLoopBackApi {
     let urlParams: any = {};
     if (where) urlParams.where = where;
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
+    return result.map((instance: Tag) => new Tag(instance));
   }
 
   /**
@@ -615,7 +374,7 @@ export class RecordApi extends BaseLoopBackApi {
   public exists(id: any) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/exists";
+    "/tags/:id/exists";
     let routeParams: any = {
       id: id
     };
@@ -638,13 +397,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
   public findById(id: any, filter: LoopBackFilter = undefined) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id";
+    "/tags/:id";
     let routeParams: any = {
       id: id
     };
@@ -652,7 +411,7 @@ export class RecordApi extends BaseLoopBackApi {
     let urlParams: any = {};
     if (filter) urlParams.filter = filter;
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
+    return result.map((instance: Tag) => new Tag(instance));
   }
 
   /**
@@ -670,13 +429,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
   public replaceById(id: any, data: any = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/replace";
+    "/tags/:id/replace";
     let routeParams: any = {
       id: id
     };
@@ -699,20 +458,20 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
   public find(filter: LoopBackFilter = undefined) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record";
+    "/tags";
     let routeParams: any = {};
     let postBody: any = {};
     let urlParams: any = {};
     if (filter) urlParams.filter = filter;
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instances: Array<Record>) =>
-        instances.map((instance: Record) => new Record(instance))
+    return result.map((instances: Array<Tag>) =>
+        instances.map((instance: Tag) => new Tag(instance))
     );
   }
 
@@ -727,19 +486,19 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
   public findOne(filter: LoopBackFilter = undefined) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/findOne";
+    "/tags/findOne";
     let routeParams: any = {};
     let postBody: any = {};
     let urlParams: any = {};
     if (filter) urlParams.filter = filter;
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
+    return result.map((instance: Tag) => new Tag(instance));
   }
 
   /**
@@ -760,7 +519,7 @@ export class RecordApi extends BaseLoopBackApi {
   public updateAll(where: any = undefined, data: any = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/update";
+    "/tags/update";
     let routeParams: any = {};
     let postBody: any = {
       data: data
@@ -782,13 +541,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
   public deleteById(id: any) {
     let method: string = "DELETE";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id";
+    "/tags/:id";
     let routeParams: any = {
       id: id
     };
@@ -814,7 +573,7 @@ export class RecordApi extends BaseLoopBackApi {
   public count(where: any = undefined) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/count";
+    "/tags/count";
     let routeParams: any = {};
     let postBody: any = {};
     let urlParams: any = {};
@@ -838,13 +597,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
   public updateAttributes(id: any, data: any = undefined) {
     let method: string = "PUT";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id";
+    "/tags/:id";
     let routeParams: any = {
       id: id
     };
@@ -873,7 +632,7 @@ export class RecordApi extends BaseLoopBackApi {
    */
   public createChangeStream() {
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/change-stream";
+    "/tags/change-stream";
     let subject = new Subject();
     if (typeof EventSource !== 'undefined') {
       let emit   = (msg: any) => subject.next(JSON.parse(msg.data));
@@ -886,7 +645,7 @@ export class RecordApi extends BaseLoopBackApi {
     return subject.asObservable();
   }
   /**
-   * Creates a new instance in dataSamples of this model.
+   * Creates a new instance in records of this model.
    *
    * @param any id PersistedModel id
    *
@@ -900,46 +659,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
-  public createManyDataSamples(id: any, data: Array<any> = undefined) {
+  public createManyRecords(id: any, data: Array<any> = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples";
-    let routeParams: any = {
-      id: id
-    };
-    let postBody: any = {
-      data: data
-    };
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Creates a new instance in tags of this model.
-   *
-   * @param any id PersistedModel id
-   *
-   * @param object data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns object[] An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public createManyTags(id: any, data: Array<any> = undefined) {
-    let method: string = "POST";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags";
+    "/tags/:id/records";
     let routeParams: any = {
       id: id
     };
@@ -964,29 +690,29 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Tag` object.)
    * </em>
    */
   public createMany(data: Array<any> = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record";
+    "/tags";
     let routeParams: any = {};
     let postBody: any = {
       data: data
     };
     let urlParams: any = {};
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instances: Array<Record>) =>
-        instances.map((instance: Record) => new Record(instance))
+    return result.map((instances: Array<Tag>) =>
+        instances.map((instance: Tag) => new Tag(instance))
     );
   }
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Record`.
+   * i.e. `Tag`.
    */
   public getModelName() {
-    return "Record";
+    return "Tag";
   }
 }
