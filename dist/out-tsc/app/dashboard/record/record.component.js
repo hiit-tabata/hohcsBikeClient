@@ -46,7 +46,13 @@ export var RecordComponent = (function () {
             scales: {
                 xAxes: [{
                         type: 'time',
-                        position: 'bottom'
+                        position: 'bottom',
+                        time: {
+                            unit: 'minute',
+                            displayFormats: {
+                                minute: 'MMM YYYY h:mm:ss a'
+                            }
+                        }
                     }]
             },
             tooltips: false

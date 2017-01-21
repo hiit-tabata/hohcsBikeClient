@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../shared/auth/auth.service.ts';
+import { Router }                 from '@angular/router';
 /**
 *	This class represents the lazy loaded DashboardComponent.
 */
@@ -13,8 +14,12 @@ import { AuthService } from '../shared/auth/auth.service.ts';
 export class DashboardComponent {
 
 	constructor(
-		private authService:AuthService
+		private authService:AuthService,
+    private router:Router
 	){
+		authService.isLoggedIn().subscribe(()=>{},err=>{
+			this.router.navigateByUrl('/login');
+		})
 		console.log("hello DashboardComponent");
 	}
 }

@@ -6,13 +6,13 @@
 			<form role="form">
 				<div class="form-content">
 					<div class="form-group">
-						<input type="text" class="form-control input-underline input-lg" id="" placeholder="Email">
+						<input type="text" class="form-control input-underline input-lg" id="" placeholder="Email" [(ngModel)]="Email" name="Email" required>
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
+						<input type="password" class="form-control input-underline input-lg" id="" placeholder="Password" [(ngModel)]="Password" name="Password" required>
 					</div>
 				</div>
-				<a class="btn rounded-btn" routerLink="/dashboard/home"> Log in </a>
+				<a class="btn rounded-btn"  (click)="login()" [hidden]="loading"> Log in </a>
 			</form>
 		</div>
 	</div>

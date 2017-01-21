@@ -44,7 +44,13 @@ export class RecordComponent {
         scales: {
             xAxes: [{
                 type: 'time',
-                position: 'bottom'
+                position: 'bottom',
+                time: {
+                    unit: 'minute',
+                    displayFormats: {
+                        minute: 'MMM YYYY h:mm:ss a'
+                    }
+                }
             }]
         },
         tooltips:false
@@ -183,7 +189,7 @@ export class RecordComponent {
             this.data={
                 datasets:[]
             };
- 
+
             let sensorName = ["none", "left back", "right back", "right pat", "left pat", "hall"];
 
             for (let sensor = 0 ; sensor<6; sensor++){

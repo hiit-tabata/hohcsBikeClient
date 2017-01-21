@@ -14,6 +14,6 @@ export class AppComponent {
   constructor(
     private authService:AuthService
   ){
-    this.authService.signin("admin@admin.admin","admin");
+    // this.authService.signin("admin@admin.admin","admin");
   }
 }
