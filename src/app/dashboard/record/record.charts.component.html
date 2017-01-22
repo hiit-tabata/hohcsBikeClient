@@ -1,36 +1,35 @@
-<h3 class="first">debug</h3>
 <div (mouseover)="onChartOver($event)">
-  <chart [options]="sensor0Options" (load)="saveChart($event.context, 0)">
+  <chart [options]="options[0]" (load)="saveChart($event.context, 0)">
     <series (hide)="onSeriesHide($event.context)">
       <xAxis (setExtremes)="syncExtremes($event)"></xAxis>
     </series>
   </chart>
 </div>
 <div (mouseover)="onChartOver($event)">
-  <chart [options]="sensor1Options" (load)="saveChart($event.context, 1)">
+  <chart [options]="options[1]" (load)="saveChart($event.context, 1)">
     <series (hide)="onSeriesHide($event.context)">
       <xAxis (afterSetExtremes)="syncExtremes($event)"></xAxis>
     </series>
   </chart>
+</div>
 <div (mouseover)="onChartOver($event)">
-<div (mouseover)="onChartOver($event)">
-  <chart [options]="sensor2Options" (load)="saveChart($event.context, 2)">
+  <chart [options]="options[2]" (load)="saveChart($event.context, 2)">
     <series (hide)="onSeriesHide($event.context)">
       <xAxis (afterSetExtremes)="onAfterSetExtremesX($event)"></xAxis>
     </series>
   </chart>
+</div>
 <div (mouseover)="onChartOver($event)">
-<div (mouseover)="onChartOver($event)">
-  <chart [options]="sensor3Options" (load)="saveChart($event.context, 3)">
+  <chart [options]="options[3]" (load)="saveChart($event.context, 3)">
     <series (hide)="onSeriesHide($event.context)">
       <xAxis (afterSetExtremes)="syncExtremes($event)"></xAxis>
     </series>
   </chart>
+</div>
 <div (mouseover)="onChartOver($event)">
-<div (mouseover)="onChartOver($event)">
-  <chart [options]="sensor4Options" (load)="saveChart($event.context, 4)">
+  <chart [options]="options[4]" (load)="saveChart($event.context, 4)">
     <series (hide)="onSeriesHide($event.context)">
       <xAxis (afterSetExtremes)="syncExtremes($event)"></xAxis>
     </series>
   </chart>
-<div (mouseover)="onChartOver($event)">
+</div>

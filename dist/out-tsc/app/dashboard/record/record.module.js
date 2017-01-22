@@ -8,32 +8,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { DebugComponent } from './debug.component';
-import { DataTableModule, SharedModule } from 'primeng/primeng';
+import { RecordComponent } from './record.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { DialogModule } from 'primeng/primeng';
-import { FormsModule } from '@angular/forms';
-import { ChartModule } from 'angular2-highcharts';
-export var DebugModule = (function () {
-    function DebugModule() {
+import { ChartModule } from 'angular2-chartjs';
+import { RecordChartsModule } from "./record.charts.module";
+export var RecordModule = (function () {
+    function RecordModule() {
     }
-    DebugModule = __decorate([
+    RecordModule = __decorate([
         NgModule({
             imports: [
-                DataTableModule,
-                SharedModule,
-                RouterModule,
                 BrowserModule,
-                DialogModule,
-                FormsModule,
-                ChartModule
+                ChartModule,
+                RecordChartsModule
             ],
-            declarations: [DebugComponent],
-            exports: [DebugComponent]
+            declarations: [
+                RecordComponent
+            ],
+            exports: [RecordComponent]
         }), 
         __metadata('design:paramtypes', [])
-    ], DebugModule);
-    return DebugModule;
+    ], RecordModule);
+    return RecordModule;
 }());
-//# sourceMappingURL=../../../../../src/app/dashboard/debug/debug.module.js.map
+//# sourceMappingURL=../../../../../src/app/dashboard/record/record.module.js.map

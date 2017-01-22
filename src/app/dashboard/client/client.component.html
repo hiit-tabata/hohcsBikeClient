@@ -9,7 +9,6 @@
 <table class="table" class="table table-striped">
   <thead class="thead-inverse">
     <tr>
-      <th>#</th>
       <th>dateTime</th>
       <th>duration</th>
       <th>ip</th>
@@ -20,8 +19,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let record of records" >
-      <th scope="row"><a routerLink="{{'/dashboard/record/'+record.id}}" >{{record.id}}</a></th>
-      <td>{{record.dateTime  | date: 'yMMMdjms'}}</td>
+      <th scope="row"><a routerLink="{{'/dashboard/record/'+record.id}}" >{{record.dateTime  | date: 'yMMMdjms'}}</a></th>
       <td>{{record.duration}}</td>
       <td>{{record.ip}}</td>
       <td>{{record.location}}</td>

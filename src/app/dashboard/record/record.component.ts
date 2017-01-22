@@ -7,6 +7,7 @@ import { DataSample }                       from '../../shared/sdk/models/DataSa
 import { DataSampleApi }                       from '../../shared/sdk/services/custom/DataSample';
 import { Router, ActivatedRoute, Params }            from '@angular/router';
 import { timeFix }                          from '../../shared/utils/timeFix';
+import * as moment from "moment";
 
 
 @Component({
@@ -19,6 +20,7 @@ export class RecordComponent {
 
     private client:Client = new Client();
     private record:Record = new Record();
+    private dataStr:string = "[]";
     private dataSamples:DataSample[] = []
     private dataSamplesCount:number =  -1;
     private recordId:string = "";
@@ -31,6 +33,10 @@ export class RecordComponent {
         enable:false
     }];
 
+
+    ngOnDestroy(){
+        document.body.removeEventListener(this.keyDownListener);
+    }
 
     type = 'line';
     data = {
@@ -73,6 +79,16 @@ export class RecordComponent {
     ) {}
 
     ngOnInit() {
+        this.getRecord();
+        this.keyDownListener = document.body.addEventListener('keydown', (e)=> {
+            if( e.keyCode == 13)
+            {
+                this.getRecord();
+            }
+        });​​​​​​​
+    }
+
+    getRecord(){
         this.route.params.forEach((params: Params) => {
             this.recordId = params['id'];
 
@@ -81,10 +97,14 @@ export class RecordComponent {
                     this.record = _record;
                     this.record.dateTime = timeFix(this.record.dateTime);
                     this.dataSamples = this.record.dataSamples;
-                    // console.log(JSON.stringify(this.record));
-                    let records = JSON.parse(_record.data);
-                    console.dir(_record);
-                    console.dir(records);
+                    this.dataStr = _record.data;
+
+                    if(Date.now() -new Date(this.record.dateTime).getTime() < 60000*25){
+                        console.log("I will auto update ");
+                        setTimeout(()=>{
+                            this.getRecord();
+                        },60000);
+                    }
                 },
                 err=>{   console.log(err);     }
             );
@@ -99,6 +119,8 @@ export class RecordComponent {
            this.updateSensorData();
         });
     }
+
+    keyDownListener:any;
 
     toggleSensor(index:number){
         if(this.downloadingData) return;

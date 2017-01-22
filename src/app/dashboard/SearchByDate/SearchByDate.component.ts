@@ -7,6 +7,7 @@ import { Router, ActivatedRoute, Params }            from '@angular/router';
 import {ElementRef, Renderer, ViewChild} from '@angular/core';
 import { DataSample }                       from '../../shared/sdk/models/DataSample';
 import { DataSampleApi }                       from '../../shared/sdk/services/custom/DataSample';
+import { timeFix }                      from '../../shared/utils/timeFix';
 
 @Component({
 	selector: 'SearchByDate-cmp',
@@ -53,6 +54,8 @@ export class SearchByDateComponent {
 		}).subscribe(
 				_records=>{
 						this.records = _records;
+            for(var record of this.records)
+                record.dateTime = timeFix(record.dateTime);
 						for(let record of _records){
 							this.recordsDataSamplesCount[record.id] = "loading";
 							this.dataSampleApi.count({

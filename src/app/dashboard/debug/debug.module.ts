@@ -8,6 +8,7 @@ import { BrowserModule }  from '@angular/platform-browser';
 import {DialogModule} from 'primeng/primeng';
 
 import { FormsModule }        from '@angular/forms';
+import { ChartModule }                  from 'angular2-highcharts';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FormsModule }        from '@angular/forms';
         RouterModule,
         BrowserModule,
         DialogModule,
-        FormsModule
+        FormsModule,
+        ChartModule
     ],
     declarations: [DebugComponent],
     exports: [DebugComponent]

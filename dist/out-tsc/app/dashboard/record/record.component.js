@@ -24,6 +24,7 @@ export var RecordComponent = (function () {
         this.dataSampleApi = dataSampleApi;
         this.client = new Client();
         this.record = new Record();
+        this.dataStr = "[]";
         this.dataSamples = [];
         this.dataSamplesCount = -1;
         this.recordId = "";
@@ -65,7 +66,19 @@ export var RecordComponent = (function () {
                 }]
         };
     }
+    RecordComponent.prototype.ngOnDestroy = function () {
+        document.body.removeEventListener(this.keyDownListener);
+    };
     RecordComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.getRecord();
+        this.keyDownListener = document.body.addEventListener('keydown', function (e) {
+            if (e.keyCode == 13) {
+                _this.getRecord();
+            }
+        });
+    };
+    RecordComponent.prototype.getRecord = function () {
         var _this = this;
         this.route.params.forEach(function (params) {
             _this.recordId = params['id'];
@@ -73,9 +86,13 @@ export var RecordComponent = (function () {
                 _this.record = _record;
                 _this.record.dateTime = timeFix(_this.record.dateTime);
                 _this.dataSamples = _this.record.dataSamples;
-                var records = JSON.parse(_record.data);
-                console.dir(_record);
-                console.dir(records);
+                _this.dataStr = _record.data;
+                if (Date.now() - new Date(_this.record.dateTime).getTime() < 60000 * 25) {
+                    console.log("I will auto update ");
+                    setTimeout(function () {
+                        _this.getRecord();
+                    }, 60000);
+                }
             }, function (err) { console.log(err); });
             _this.dataSampleApi.count({
                 recordId: params['id']
