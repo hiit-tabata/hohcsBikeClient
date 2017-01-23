@@ -36,6 +36,9 @@ export class HomeComponent {
 	public getRecords(){
 		this.recordsDataSamplesCount = {};
 		this.recordApi.find({
+			fields:{
+				data:false
+			},
 			where:{
 				dateTime:{
 					gt: Date.now() - 1000*60*60*24*7 //7 days

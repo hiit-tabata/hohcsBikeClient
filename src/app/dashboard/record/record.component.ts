@@ -110,11 +110,11 @@ export class RecordComponent {
                 err=>{   console.log(err);     }
             );
 
-           this.dataSampleApi.count({
-               recordId:params['id']
-           }).subscribe(_count=>{
-               this.dataSamplesCount= _count.count;
-           });
+          //  this.dataSampleApi.count({
+          //      recordId:params['id']
+          //  }).subscribe(_count=>{
+          //      this.dataSamplesCount= _count.count;
+          //  });
 
            //plot the data
            this.updateSensorData();
