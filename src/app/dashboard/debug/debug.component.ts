@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { RecordApi }                      from '../../shared/sdk/services/custom/Record.ts';
+import { RecordApi }                      from '../../shared/sdk/services/custom/Record';
 import { DataSample }                       from '../../shared/sdk/models/DataSample';
 import { DataSampleApi }                       from '../../shared/sdk/services/custom/DataSample';
 import { ClientApi }                    from '../../shared/sdk/services/custom/Client';

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UserApi }                      from '../../shared/sdk/services/custom/User.ts';
+import { UserApi }                      from '../../shared/sdk/services/custom/User';
 import { ClientApi }                    from '../../shared/sdk/services/custom/Client';
 import { Client }                       from '../../shared/sdk/models/Client';
 import { Dialog }                       from 'primeng/components/dialog/dialog';

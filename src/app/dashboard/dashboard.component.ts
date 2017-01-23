@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../shared/auth/auth.service.ts';
+import { AuthService } from '../shared/auth/auth.service';
 import { Router }                 from '@angular/router';
 /**
 *	This class represents the lazy loaded DashboardComponent.

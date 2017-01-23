@@ -1,7 +1,7 @@
 import { Injectable }             from '@angular/core';
 import { Router }                 from '@angular/router';
 
-import { User }                 from '../sdk/models/User';
+import { User }                   from '../sdk/models/User';
 import { UserApi }                from '../sdk/services/custom/User';
 import { LoopBackConfig }         from '../sdk';
 import { environment }            from '../../../environments/environment';

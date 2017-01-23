@@ -18,7 +18,7 @@
 <div class="card">
   <RecordCharts [dataStr]="this.dataStr"></RecordCharts>
 </div>
-<div  class="card">
+<div  class="card" *ngIf="showRawData">
   <h4 class="card-title">Sensor rawData</h4>
   <ul class="nav nav-tabs">
     <li
@@ -37,7 +37,7 @@
 </div>
 
 
-<div  class="card">
+<div  class="card" *ngIf="showRawData">
   <h4 class="card-title">Sensor cal</h4>
   <ul class="nav nav-tabs">
     <li

@@ -189,6 +189,8 @@ export class RecordComponent {
 
     //redownlaod the data
     updateSensorData(){
+        return;
+        /*
         console.log("updateSensorData");
         let filter = {where:{
             or:[]
@@ -247,5 +249,6 @@ export class RecordComponent {
             }
             this.downloadingData = false;
         });
+        */
     }
 }
