@@ -51,7 +51,7 @@ export class RecordChartsComponent implements OnChanges{
                 xAxis: {
                     crosshair: true,
                     events: {
-                        setExtremes: this.syncExtremes
+                        // setExtremes: this.syncExtremes
                     },
                     // labels: {
                     //     format: '{value} km'
