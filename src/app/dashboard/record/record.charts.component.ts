@@ -135,7 +135,15 @@ export class RecordChartsComponent implements OnChanges{
     }
 
     ngOnChanges(changes){
+        if(this.dataStr == "" || !this.dataStr ){
+            console.log(`The JSon string ${this.dataStr}`);
+            console.log(this.dataStr);
+            return;
+        }else
+            console.log(`I got string with length ${this.dataStr.length}`)
+
         this.data = JSON.parse(this.dataStr);
+
 
         let dataSet:any[][] = [[],[],[],[],[]];
         console.log( this.data[0]);
@@ -150,6 +158,7 @@ export class RecordChartsComponent implements OnChanges{
                 }
             }
 
+        console.log(dataSet);
         for(let i = 0; i < this.charts.length; i++){
             this.charts[i].series[0].setData(dataSet[i]);
         }

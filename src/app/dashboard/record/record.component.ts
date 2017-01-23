@@ -98,6 +98,7 @@ export class RecordComponent {
                     this.record.dateTime = timeFix(this.record.dateTime);
                     this.dataSamples = this.record.dataSamples;
                     this.dataStr = _record.data;
+                    console.dir(_record);
 
                     if(Date.now() -new Date(this.record.dateTime).getTime() < 60000*25){
                         console.log("I will auto update ");

@@ -44,17 +44,9 @@ export var HomeComponent = (function () {
                 var record = _a[_i];
                 record.dateTime = timeFix(record.dateTime);
             }
-            var _loop_1 = function(record_1) {
-                _this.recordsDataSamplesCount[record_1.id] = "loading";
-                _this.dataSampleApi.count({
-                    recordId: record_1.id
-                }).subscribe(function (result) {
-                    _this.recordsDataSamplesCount[record_1.id] = result.count;
-                });
-            };
             for (var _b = 0, _records_1 = _records; _b < _records_1.length; _b++) {
                 var record_1 = _records_1[_b];
-                _loop_1(record_1);
+                _this.recordsDataSamplesCount[record_1.id] = "loading";
             }
         }, function (err) { console.log(err); });
     };

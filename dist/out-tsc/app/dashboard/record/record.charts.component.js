@@ -117,6 +117,13 @@ export var RecordChartsComponent = (function () {
         }
     };
     RecordChartsComponent.prototype.ngOnChanges = function (changes) {
+        if (this.dataStr == "" || !this.dataStr) {
+            console.log("The JSon string " + this.dataStr);
+            console.log(this.dataStr);
+            return;
+        }
+        else
+            console.log("I got string with length " + this.dataStr.length);
         this.data = JSON.parse(this.dataStr);
         var dataSet = [[], [], [], [], []];
         console.log(this.data[0]);
@@ -130,6 +137,7 @@ export var RecordChartsComponent = (function () {
                     ]);
                 }
             }
+        console.log(dataSet);
         for (var i = 0; i < this.charts.length; i++) {
             this.charts[i].series[0].setData(dataSet[i]);
         }

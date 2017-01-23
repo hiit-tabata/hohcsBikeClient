@@ -49,11 +49,11 @@ export class HomeComponent {
                 record.dateTime = timeFix(record.dateTime);
 						for(let record of _records){
 							this.recordsDataSamplesCount[record.id] = "loading";
-							this.dataSampleApi.count({
-								recordId:record.id
-							}).subscribe(result=>{
-								this.recordsDataSamplesCount[record.id] = result.count;
-							});
+							// this.dataSampleApi.count({
+							// 	recordId:record.id
+							// }).subscribe(result=>{
+							// 	this.recordsDataSamplesCount[record.id] = result.count;
+							// });
 						}
 				},
 				err=>{ console.log(err); }

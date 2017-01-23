@@ -87,6 +87,7 @@ export var RecordComponent = (function () {
                 _this.record.dateTime = timeFix(_this.record.dateTime);
                 _this.dataSamples = _this.record.dataSamples;
                 _this.dataStr = _record.data;
+                console.dir(_record);
                 if (Date.now() - new Date(_this.record.dateTime).getTime() < 60000 * 25) {
                     console.log("I will auto update ");
                     setTimeout(function () {
