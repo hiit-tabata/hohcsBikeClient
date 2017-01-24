@@ -31,6 +31,7 @@
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
+    "bootstrap": "^4.0.0-alpha.4",
     "qrcode-generator": "^1.0.7",
     "socket.io-client": "^1.5.0",
     "angular2-chartjs": "^0.1.5",

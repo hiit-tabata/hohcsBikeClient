@@ -17,6 +17,8 @@ import { SDKModule } from './shared/sdk/index';
 
 import { AuthModule } from './shared/auth/auth.module';
 
+import { AuthGuard } from './shared/auth/AuthGuard';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -32,7 +34,9 @@ import { AuthModule } from './shared/auth/auth.module';
     SDKModule.forRoot(),
     AuthModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

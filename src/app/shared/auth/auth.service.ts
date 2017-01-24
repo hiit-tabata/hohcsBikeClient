@@ -7,6 +7,7 @@ import { LoopBackConfig }         from '../sdk';
 import { environment }            from '../../../environments/environment';
 import { LoopBackAuth }           from '../sdk/services/core/auth.service';
 import { Subject, Observable, Observer }    from 'rxjs';
+import { SDKToken, AccessToken } from '../sdk/models/BaseModels';
 
 @Injectable()
 export class AuthService {
@@ -14,6 +15,7 @@ export class AuthService {
   private userId:string;
   private waitingLoginToken:boolean = false;
   private userSubject:Subject<User>;
+  public logedIn:boolean = false;
 
   constructor(
     private userApi:UserApi,
@@ -21,8 +23,23 @@ export class AuthService {
     private router:Router
   ){
       console.log(`The url is ${environment.BASE_URL}`);
-        LoopBackConfig.setBaseURL(environment.BASE_URL);
-        LoopBackConfig.setApiVersion(environment.API_VERSION);
+      LoopBackConfig.setBaseURL(environment.BASE_URL);
+      LoopBackConfig.setApiVersion(environment.API_VERSION);
+
+      debugger;
+      let mtoken = this.loopBackAuth.getToken() as SDKToken;
+      if(mtoken.rememberMe)
+        this.checkLogin();
+  }
+
+  public checkLogin(){
+    debugger;
+    if(!this.loopBackAuth.getCurrentUserId()) return false;
+    let mytoken = this.loopBackAuth.getToken() as SDKToken;
+
+    this.loopBackAuth.setUser(mytoken);
+    this.logedIn = true;
+    this.router.navigateByUrl('/dashboard/home');
   }
 
   public signin(email:string, password:string){
@@ -35,6 +52,7 @@ export class AuthService {
             if(this.waitingLoginToken || !this.user){
               this.userApi.findById(this.userId).subscribe(_user=>{
                 this.user = _user;
+                this.logedIn = true;
                 if(this.userSubject)
                   this.userSubject.next(_user);
                 loginSubject.next(_user);

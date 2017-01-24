@@ -13,7 +13,7 @@ import { DatepickerModule } from 'ng2-bootstrap/datepicker';
         CarouselModule,
         RouterModule,
         BrowserModule,
-        DatepickerModule,
+        DatepickerModule.forRoot(),
         FormsModule
     ],
     declarations: [SearchByDateComponent],

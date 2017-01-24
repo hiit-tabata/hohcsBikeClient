@@ -78,9 +78,6 @@ export class ClientComponent implements OnInit, OnDestroy {
             //this.carService.getCarsMedium().then(cars => this.cars = cars);
             this.clientApi.findById(this.clientId,{
                     include:"records",
-        			fields:{
-        				data:false
-        			},
             }).subscribe(
                 _client=>{
                     this.client = _client;

@@ -10,6 +10,8 @@ import { SearchByDateRoute }        from './SearchByDate';
 import { DebugRoutes }              from './debug';
 
 import { DashboardComponent }       from './dashboard.component';
+import { SidebarComponent }         from '../shared/index';
+import { AuthGuard }                from '../shared/auth/AuthGuard';
 
 export const DashboardRoutes: Route[] = [
   	{
@@ -24,6 +26,7 @@ export const DashboardRoutes: Route[] = [
          ...RecordRoutes,
          ...SearchByDateRoute,
          ...DebugRoutes
-    	]
+    	],
+      canActivate: [AuthGuard]
   	}
 ];
