@@ -1,10 +1,11 @@
 <h3 class="first">Client - {{client.username||"downloading"}}</h3>
 <h3 class="first">Records</h3>
 <div #qrCode></div>
+
+<a routerLink="{{'/dashboard/client/'+client.id+'/edit'}}" >Edit</a>
 <input type="number" [(ngModel)]="duration" *ngIf="advanceUser" (ngModelChange)="onMinsValueChange($event)"/>
 <div>
   <h4>Remarks</h4>
-  <textarea style="width:100%">sadfkjsadhfl kjsdfhladsadasdf</textarea>
 </div>
 <table class="table" class="table table-striped">
   <thead class="thead-inverse">

@@ -26,14 +26,12 @@ export class AuthService {
       LoopBackConfig.setBaseURL(environment.BASE_URL);
       LoopBackConfig.setApiVersion(environment.API_VERSION);
 
-      debugger;
       let mtoken = this.loopBackAuth.getToken() as SDKToken;
       if(mtoken.rememberMe)
         this.checkLogin();
   }
 
   public checkLogin(){
-    debugger;
     if(!this.loopBackAuth.getCurrentUserId()) return false;
     let mytoken = this.loopBackAuth.getToken() as SDKToken;
 
