@@ -6,6 +6,7 @@ import { RouterModule }             from '@angular/router';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { DatepickerModule } from 'ng2-bootstrap/datepicker';
+import { TimeFixModule }     from '../../shared/utils/timeFix';
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import { DatepickerModule } from 'ng2-bootstrap/datepicker';
         RouterModule,
         BrowserModule,
         DatepickerModule.forRoot(),
-        FormsModule
+        FormsModule,
+        TimeFixModule
     ],
     declarations: [SearchByDateComponent],
     exports: [SearchByDateComponent]

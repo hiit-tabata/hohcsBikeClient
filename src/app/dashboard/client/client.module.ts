@@ -8,6 +8,8 @@ import { EditClientComponent } from "./editClient.component";
 import {DataTableModule,SharedModule} from 'primeng/primeng';
 import { FormsModule }   from '@angular/forms';
 import { QuillEditorModule } from 'ng2-quill-editor';
+import { TimeFixModule }     from '../../shared/utils/timeFix';
+
 
 @NgModule({
     imports: [
@@ -16,7 +18,8 @@ import { QuillEditorModule } from 'ng2-quill-editor';
         RouterModule,
         BrowserModule,
         FormsModule,
-        QuillEditorModule
+        QuillEditorModule,
+        TimeFixModule
     ],
     declarations: [
         ClientComponent,

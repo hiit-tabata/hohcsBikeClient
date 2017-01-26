@@ -5,6 +5,7 @@ import { RecordApi }                        from '../../shared/sdk/services/cust
 import { Record }                           from '../../shared/sdk/models/Record';
 import { Router, ActivatedRoute, Params }            from '@angular/router';
 
+
 @Component({
     selector: 'editClient-component',
     template: `

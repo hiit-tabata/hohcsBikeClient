@@ -1,4 +1,6 @@
 import * as moment from "moment";
+import {Pipe, PipeTransform} from '@angular/core';
+import { NgModule } from '@angular/core';
 
 // TO fix the time diff. in angyular with timezone and the data input from the server, minus  8 hours to display correct date
 export function timeFix(IsoDate){
@@ -13,3 +15,24 @@ export function formatMilliToMins(milliesc:number){
   if(mins == 0) return sec+"sec";
   return `${mins}mins ${sec}sec`;
 }
+
+
+@Pipe({
+    name: 'formatMilliSec'
+})
+export class formatMilliToMinsPip implements PipeTransform {
+  transform(value: number): string {
+    return formatMilliToMins(value);
+  }
+}
+
+
+@NgModule({
+    imports: [ ],
+    declarations: [
+      formatMilliToMinsPip
+    ],
+    exports: [formatMilliToMinsPip]
+})
+
+export class TimeFixModule { }
