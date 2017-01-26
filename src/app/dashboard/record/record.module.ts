@@ -5,6 +5,7 @@ import { RecordChartsComponent } from "./record.charts.component";
 import { BrowserModule }  from '@angular/platform-browser';
 import { ChartModule } from 'angular2-chartjs';
 import {RecordChartsModule } from "./record.charts.module";
+import { RecordBuffer } from '../../shared/utils/serverBuffer';
 @NgModule({
     imports: [
         BrowserModule,
@@ -14,7 +15,8 @@ import {RecordChartsModule } from "./record.charts.module";
     declarations: [
         RecordComponent
     ],
-    exports: [RecordComponent]
+    exports: [RecordComponent],
+    providers: [RecordBuffer]
 })
 
 export class RecordModule { }

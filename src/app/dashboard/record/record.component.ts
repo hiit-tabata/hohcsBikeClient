@@ -3,11 +3,13 @@ import { ClientApi }                        from '../../shared/sdk/services/cust
 import { Client }                           from '../../shared/sdk/models/Client';
 import { RecordApi }                        from '../../shared/sdk/services/custom/Record';
 import { Record }                           from '../../shared/sdk/models/Record';
+import { LoopBackFilter  }                 from '../../shared/sdk/models/BaseModels';
 import { DataSample }                       from '../../shared/sdk/models/DataSample';
 import { DataSampleApi }                       from '../../shared/sdk/services/custom/DataSample';
 import { Router, ActivatedRoute, Params }            from '@angular/router';
 import { timeFix }                          from '../../shared/utils/timeFix';
 import * as moment from "moment";
+import { RecordBuffer } from '../../shared/utils/serverBuffer';
 
 
 @Component({
@@ -73,7 +75,8 @@ export class RecordComponent {
         private recordApi:RecordApi,
         private route: ActivatedRoute,
         private router:Router,
-        private dataSampleApi:DataSampleApi
+        private dataSampleApi:DataSampleApi,
+        private recordBuffer:RecordBuffer
     ) {}
 
     ngOnInit() {
@@ -90,23 +93,48 @@ export class RecordComponent {
         this.route.params.forEach((params: Params) => {
             this.recordId = params['id'];
 
-            this.recordApi.findById(this.recordId,{include:["client"]}).subscribe(
-                _record=>{
-                    this.record = _record;
-                    this.record.dateTime = timeFix(this.record.dateTime);
-                    this.dataSamples = this.record.dataSamples;
-                    this.dataStr = _record.data;
-                    console.dir(_record);
+            this.recordBuffer.getRecordData(this.recordId)
+            .subscribe(localDbRecord=>{
+                console.log("record from local db");
+                console.log(localDbRecord);
 
-                    if(Date.now() -new Date(this.record.dateTime).getTime() < 60000*25){
-                        console.log("I will auto update ");
-                        setTimeout(()=>{
-                            this.getRecord();
-                        },60000);
-                    }
-                },
-                err=>{   console.log(err);     }
-            );
+                let filter:LoopBackFilter={include:["client"]}
+                if(localDbRecord != undefined){
+                    filter.fields = {data:false};
+                }
+                console.log("I am here");
+                debugger;
+
+                this.recordApi.findById(this.recordId,filter).subscribe(
+                    _record=>{
+                        console.log("request sucess");
+                        this.record = _record;
+                        this.record.dateTime = timeFix(this.record.dateTime);
+                        this.dataSamples = this.record.dataSamples;
+                        console.log("I got record");
+                        console.dir(_record);
+                        if(localDbRecord!= undefined){
+                            this.dataStr = localDbRecord.data;
+                            this.recordBuffer.put(_record)
+                            .subscribe(res=>{console.log("sucess")}, err=>{console.log(err);})
+                        }else{
+                            this.dataStr = _record.data;
+                            this.recordBuffer.add(_record)
+                            .subscribe(res=>{console.log("sucess")}, err=>{console.log(err);})
+                        }
+                        console.log("record from server");
+                        console.dir(_record);
+
+                        if(Date.now() -new Date(this.record.dateTime).getTime() < 60000*25){
+                            console.log("I will auto update ");
+                            setTimeout(()=>{
+                                this.getRecord();
+                            },60000);
+                        }
+                    },
+                    err=>{   console.log(err);     }
+                );
+            });
         });
     }
 
