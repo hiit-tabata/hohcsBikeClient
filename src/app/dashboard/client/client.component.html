@@ -1,12 +1,27 @@
-<h3 class="first">Client - {{client.username||"downloading"}}</h3>
-<h3 class="first">Records</h3>
-<div #qrCode></div>
 
-<a routerLink="{{'/dashboard/client/'+client.id+'/edit'}}" >Edit</a>
+
 <input type="number" [(ngModel)]="duration" *ngIf="advanceUser" (ngModelChange)="onMinsValueChange($event)"/>
-<div>
-  <h4>Remarks</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="first">
+        Client - {{client.username||"downloading"}} Records
+        <a class="btn btn-primary pull-right" routerLink="{{'/dashboard/client/'+client.id+'/edit'}}" >Edit</a>
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div #qrCode></div>
+    </div>
+    <div class="col-6">
+      <h4>Remarks:</h4>
+      <div [innerHTML]="client.remarks || 'loading'">
+      </div>
+    </div>
+  </div>
 </div>
+
 <table class="table" class="table table-striped">
   <thead class="thead-inverse">
     <tr>

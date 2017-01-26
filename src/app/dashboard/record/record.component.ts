@@ -10,7 +10,7 @@ import { Router, ActivatedRoute, Params }            from '@angular/router';
 import { timeFix }                          from '../../shared/utils/timeFix';
 import * as moment from "moment";
 import { RecordBuffer } from '../../shared/utils/serverBuffer';
-
+import { formatMilliToMins } from '../../shared/utils/timeFix';
 
 @Component({
     selector: 'record',
@@ -27,11 +27,15 @@ export class RecordComponent {
     private dataSamplesCount:number =  -1;
     private recordId:string = "";
     private downloadingData = false;
+    private durationString:string="";
+
 
     private calDataOption=[{
         name:"hall sensor relative time",
         enable:false
     }];
+
+
 
 
     ngOnDestroy(){
@@ -102,8 +106,6 @@ export class RecordComponent {
                 if(localDbRecord != undefined){
                     filter.fields = {data:false};
                 }
-                console.log("I am here");
-                debugger;
 
                 this.recordApi.findById(this.recordId,filter).subscribe(
                     _record=>{
@@ -113,14 +115,17 @@ export class RecordComponent {
                         this.dataSamples = this.record.dataSamples;
                         console.log("I got record");
                         console.dir(_record);
+                        this.durationString = formatMilliToMins(_record.duration*1);
                         if(localDbRecord!= undefined){
                             this.dataStr = localDbRecord.data;
                             this.recordBuffer.put(_record)
                             .subscribe(res=>{console.log("sucess")}, err=>{console.log(err);})
                         }else{
                             this.dataStr = _record.data;
-                            this.recordBuffer.add(_record)
-                            .subscribe(res=>{console.log("sucess")}, err=>{console.log(err);})
+                            if(Date.now() - new Date(_record.dateTime).getTime() > 1900000 ){
+                                this.recordBuffer.add(_record)
+                                .subscribe(res=>{console.log("sucess")}, err=>{console.log(err);})
+                            }
                         }
                         console.log("record from server");
                         console.dir(_record);
