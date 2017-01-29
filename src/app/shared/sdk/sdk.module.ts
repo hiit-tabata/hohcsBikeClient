@@ -44,6 +44,7 @@ import { RecordApi } from './services/custom/Record';
 import { DataSampleApi } from './services/custom/DataSample';
 import { ClientApi } from './services/custom/Client';
 import { TagApi } from './services/custom/Tag';
+import { GridfsApi } from './services/custom/Gridfs';
 
 @NgModule({
   imports:      [ CommonModule, HttpModule ],
@@ -65,7 +66,8 @@ export class SDKModule {
       RecordApi,
       DataSampleApi,
       ClientApi,
-      TagApi
+      TagApi,
+      GridfsApi
       ]
     };
   }

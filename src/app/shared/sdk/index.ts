@@ -28,6 +28,7 @@ import { RecordApi } from './services/custom/Record';
 import { DataSampleApi } from './services/custom/DataSample';
 import { ClientApi } from './services/custom/Client';
 import { TagApi } from './services/custom/Tag';
+import { GridfsApi } from './services/custom/Gridfs';
 /**
 * IMPORTANT: API_PROVIDERS WILL BE DEPRECATED WHEN ANGULAR 2 IS STABLE
 * PLEASE MIGRATE YOUR PROJECT AS SOON AS POSSIBLE.
@@ -43,7 +44,8 @@ export const API_PROVIDERS: any[] = [
   RecordApi,
   DataSampleApi,
   ClientApi,
-  TagApi
+  TagApi,
+  GridfsApi
 ];
 export * from './models/index';
 export * from './services/index';

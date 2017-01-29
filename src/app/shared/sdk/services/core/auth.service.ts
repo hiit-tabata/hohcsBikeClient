@@ -59,7 +59,7 @@ export class LoopBackAuth {
   protected load(prop: string): any {
     return StorageDriver.get(`${this.prefix}${prop}`);
   }
-
+  
   public clear(): void {
     Object.keys(this.token).forEach(prop => StorageDriver.remove(`${this.prefix}${prop}`));
     this.token = new SDKToken();

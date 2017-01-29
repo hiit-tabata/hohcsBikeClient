@@ -33,7 +33,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Find a related item by id for accessTokens.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param any fk Foreign key for accessTokens
    *
@@ -63,7 +63,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Delete a related item by id for accessTokens.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param any fk Foreign key for accessTokens
    *
@@ -90,7 +90,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Update a related item by id for accessTokens.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param any fk Foreign key for accessTokens
    *
@@ -126,7 +126,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Find a related item by id for records.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param any fk Foreign key for records
    *
@@ -156,7 +156,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Delete a related item by id for records.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param any fk Foreign key for records
    *
@@ -183,7 +183,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Update a related item by id for records.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param any fk Foreign key for records
    *
@@ -219,7 +219,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Queries accessTokens of client.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param object filter 
    *
@@ -249,7 +249,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Creates a new instance in accessTokens of this model.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param object data Request data.
    *
@@ -282,7 +282,9 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Deletes all accessTokens of this model.
    *
-   * @param any id User id
+   * @param any id client id
+   *
+   * @param object where 
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -290,7 +292,7 @@ export class ClientApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public deleteAccessTokens(id: any) {
+  public deleteAccessTokens(id: any, where: any = undefined) {
     let method: string = "DELETE";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/clients/:id/accessTokens";
@@ -299,6 +301,7 @@ export class ClientApi extends BaseLoopBackApi {
     };
     let postBody: any = {};
     let urlParams: any = {};
+    if (where) urlParams.where = where;
     let result = this.request(method, url, routeParams, urlParams, postBody);
     return result;
   }
@@ -306,7 +309,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Counts accessTokens of client.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param object where Criteria to match model instances
    *
@@ -335,7 +338,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Queries records of client.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param object filter 
    *
@@ -365,7 +368,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Creates a new instance in records of this model.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param object data Request data.
    *
@@ -398,7 +401,9 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Deletes all records of this model.
    *
-   * @param any id User id
+   * @param any id client id
+   *
+   * @param object where 
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -406,7 +411,7 @@ export class ClientApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public deleteRecords(id: any) {
+  public deleteRecords(id: any, where: any = undefined) {
     let method: string = "DELETE";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/clients/:id/records";
@@ -415,6 +420,7 @@ export class ClientApi extends BaseLoopBackApi {
     };
     let postBody: any = {};
     let urlParams: any = {};
+    if (where) urlParams.where = where;
     let result = this.request(method, url, routeParams, urlParams, postBody);
     return result;
   }
@@ -422,7 +428,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Counts records of client.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param object where Criteria to match model instances
    *
@@ -723,7 +729,7 @@ export class ClientApi extends BaseLoopBackApi {
    *   populated with the actual data once the response is returned
    *   from the server.
    *
-   * The number of instances updated
+   * Information related to the outcome of the operation
    */
   public updateAll(where: any = undefined, data: any = undefined) {
     let method: string = "POST";
@@ -794,7 +800,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param object data Request data.
    *
@@ -1092,7 +1098,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Creates a new instance in accessTokens of this model.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param object data Request data.
    *
@@ -1125,7 +1131,7 @@ export class ClientApi extends BaseLoopBackApi {
   /**
    * Creates a new instance in records of this model.
    *
-   * @param any id User id
+   * @param any id client id
    *
    * @param object data Request data.
    *

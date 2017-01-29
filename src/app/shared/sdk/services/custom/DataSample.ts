@@ -304,7 +304,7 @@ export class DataSampleApi extends BaseLoopBackApi {
    *   populated with the actual data once the response is returned
    *   from the server.
    *
-   * The number of instances updated
+   * Information related to the outcome of the operation
    */
   public updateAll(where: any = undefined, data: any = undefined) {
     let method: string = "POST";
@@ -375,7 +375,7 @@ export class DataSampleApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param any id PersistedModel id
+   * @param any id dataSample id
    *
    * @param object data Request data.
    *

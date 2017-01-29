@@ -33,7 +33,7 @@ export class TagApi extends BaseLoopBackApi {
   /**
    * Find a related item by id for records.
    *
-   * @param any id PersistedModel id
+   * @param any id tag id
    *
    * @param any fk Foreign key for records
    *
@@ -63,7 +63,7 @@ export class TagApi extends BaseLoopBackApi {
   /**
    * Delete a related item by id for records.
    *
-   * @param any id PersistedModel id
+   * @param any id tag id
    *
    * @param any fk Foreign key for records
    *
@@ -90,7 +90,7 @@ export class TagApi extends BaseLoopBackApi {
   /**
    * Update a related item by id for records.
    *
-   * @param any id PersistedModel id
+   * @param any id tag id
    *
    * @param any fk Foreign key for records
    *
@@ -126,7 +126,7 @@ export class TagApi extends BaseLoopBackApi {
   /**
    * Queries records of tag.
    *
-   * @param any id PersistedModel id
+   * @param any id tag id
    *
    * @param object filter 
    *
@@ -156,7 +156,7 @@ export class TagApi extends BaseLoopBackApi {
   /**
    * Creates a new instance in records of this model.
    *
-   * @param any id PersistedModel id
+   * @param any id tag id
    *
    * @param object data Request data.
    *
@@ -189,7 +189,9 @@ export class TagApi extends BaseLoopBackApi {
   /**
    * Deletes all records of this model.
    *
-   * @param any id PersistedModel id
+   * @param any id tag id
+   *
+   * @param object where 
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -197,7 +199,7 @@ export class TagApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public deleteRecords(id: any) {
+  public deleteRecords(id: any, where: any = undefined) {
     let method: string = "DELETE";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/tags/:id/records";
@@ -206,6 +208,7 @@ export class TagApi extends BaseLoopBackApi {
     };
     let postBody: any = {};
     let urlParams: any = {};
+    if (where) urlParams.where = where;
     let result = this.request(method, url, routeParams, urlParams, postBody);
     return result;
   }
@@ -213,7 +216,7 @@ export class TagApi extends BaseLoopBackApi {
   /**
    * Counts records of tag.
    *
-   * @param any id PersistedModel id
+   * @param any id tag id
    *
    * @param object where Criteria to match model instances
    *
@@ -514,7 +517,7 @@ export class TagApi extends BaseLoopBackApi {
    *   populated with the actual data once the response is returned
    *   from the server.
    *
-   * The number of instances updated
+   * Information related to the outcome of the operation
    */
   public updateAll(where: any = undefined, data: any = undefined) {
     let method: string = "POST";
@@ -585,7 +588,7 @@ export class TagApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param any id PersistedModel id
+   * @param any id tag id
    *
    * @param object data Request data.
    *
@@ -647,7 +650,7 @@ export class TagApi extends BaseLoopBackApi {
   /**
    * Creates a new instance in records of this model.
    *
-   * @param any id PersistedModel id
+   * @param any id tag id
    *
    * @param object data Request data.
    *

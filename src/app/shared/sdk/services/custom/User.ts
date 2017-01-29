@@ -190,13 +190,15 @@ export class UserApi extends BaseLoopBackApi {
    *
    * @param any id User id
    *
+   * @param object where 
+   *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
    *   from the server.
    *
    * This method returns no data.
    */
-  public deleteAccessTokens(id: any) {
+  public deleteAccessTokens(id: any, where: any = undefined) {
     let method: string = "DELETE";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/Users/:id/accessTokens";
@@ -205,6 +207,7 @@ export class UserApi extends BaseLoopBackApi {
     };
     let postBody: any = {};
     let urlParams: any = {};
+    if (where) urlParams.where = where;
     let result = this.request(method, url, routeParams, urlParams, postBody);
     return result;
   }
@@ -513,7 +516,7 @@ export class UserApi extends BaseLoopBackApi {
    *   populated with the actual data once the response is returned
    *   from the server.
    *
-   * The number of instances updated
+   * Information related to the outcome of the operation
    */
   public updateAll(where: any = undefined, data: any = undefined) {
     let method: string = "POST";

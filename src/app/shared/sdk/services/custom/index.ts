@@ -4,4 +4,5 @@ export * from './Record';
 export * from './DataSample';
 export * from './Client';
 export * from './Tag';
+export * from './Gridfs';
 export * from './logger.service';

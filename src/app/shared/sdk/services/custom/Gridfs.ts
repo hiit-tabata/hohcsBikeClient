@@ -9,19 +9,16 @@ import { JSONSearchParams } from '../core/search.params';
 import { ErrorHandler } from '../core/error.service';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
-import { Record } from '../../models/Record';
-import { DataSample } from '../../models/DataSample';
-import { Client } from '../../models/Client';
-import { Tag } from '../../models/Tag';
+import { Gridfs } from '../../models/Gridfs';
 
 // Making Sure EventSource Type is available to avoid compilation issues.
 declare var EventSource: any;
 
 /**
- * Api services for the `Record` model.
+ * Api services for the `Gridfs` model.
  */
 @Injectable()
-export class RecordApi extends BaseLoopBackApi {
+export class GridfsApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(Http) http: Http,
@@ -33,227 +30,9 @@ export class RecordApi extends BaseLoopBackApi {
   }
 
   /**
-   * Find a related item by id for dataSamples.
-   *
-   * @param any id record id
-   *
-   * @param any fk Foreign key for dataSamples
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
    * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public findByIdDataSamples(id: any, fk: any) {
-    let method: string = "GET";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples/:fk";
-    let routeParams: any = {
-      id: id,
-      fk: fk
-    };
-    let postBody: any = {};
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
-  }
-
-  /**
-   * Delete a related item by id for dataSamples.
-   *
-   * @param any id record id
-   *
-   * @param any fk Foreign key for dataSamples
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * This method returns no data.
-   */
-  public destroyByIdDataSamples(id: any, fk: any) {
-    let method: string = "DELETE";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples/:fk";
-    let routeParams: any = {
-      id: id,
-      fk: fk
-    };
-    let postBody: any = {};
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Update a related item by id for dataSamples.
-   *
-   * @param any id record id
-   *
-   * @param any fk Foreign key for dataSamples
-   *
-   * @param object data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public updateByIdDataSamples(id: any, fk: any, data: any = undefined) {
-    let method: string = "PUT";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples/:fk";
-    let routeParams: any = {
-      id: id,
-      fk: fk
-    };
-    let postBody: any = {
-      data: data
-    };
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Fetches belongsTo relation client.
-   *
-   * @param any id record id
-   *
-   * @param boolean refresh 
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public getClient(id: any, refresh: any = undefined) {
-    let method: string = "GET";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/client";
-    let routeParams: any = {
-      id: id
-    };
-    let postBody: any = {};
-    let urlParams: any = {};
-    if (refresh) urlParams.refresh = refresh;
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Find a related item by id for tags.
-   *
-   * @param any id record id
-   *
-   * @param any fk Foreign key for tags
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public findByIdTags(id: any, fk: any) {
-    let method: string = "GET";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags/:fk";
-    let routeParams: any = {
-      id: id,
-      fk: fk
-    };
-    let postBody: any = {};
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
-  }
-
-  /**
-   * Delete a related item by id for tags.
-   *
-   * @param any id record id
-   *
-   * @param any fk Foreign key for tags
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * This method returns no data.
-   */
-  public destroyByIdTags(id: any, fk: any) {
-    let method: string = "DELETE";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags/:fk";
-    let routeParams: any = {
-      id: id,
-      fk: fk
-    };
-    let postBody: any = {};
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Update a related item by id for tags.
-   *
-   * @param any id record id
-   *
-   * @param any fk Foreign key for tags
-   *
-   * @param object data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public updateByIdTags(id: any, fk: any, data: any = undefined) {
-    let method: string = "PUT";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags/:fk";
-    let routeParams: any = {
-      id: id,
-      fk: fk
-    };
-    let postBody: any = {
-      data: data
-    };
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Queries dataSamples of record.
-   *
-   * @param any id record id
-   *
-   * @param object filter 
+         * (The remote method definition does not provide any description.)
+         * </em>
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -261,89 +40,26 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
-  public getDataSamples(id: any, filter: LoopBackFilter = undefined) {
+  public getContainers() {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples";
-    let routeParams: any = {
-      id: id
-    };
+    "/gridfs";
+    let routeParams: any = {};
     let postBody: any = {};
     let urlParams: any = {};
-    if (filter) urlParams.filter = filter;
     let result = this.request(method, url, routeParams, urlParams, postBody);
     return result;
   }
 
   /**
-   * Creates a new instance in dataSamples of this model.
-   *
-   * @param any id record id
-   *
-   * @param object data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
    * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public createDataSamples(id: any, data: any = undefined) {
-    let method: string = "POST";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples";
-    let routeParams: any = {
-      id: id
-    };
-    let postBody: any = {
-      data: data
-    };
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Deletes all dataSamples of this model.
+         * (The remote method definition does not provide any description.)
+         * </em>
    *
-   * @param any id record id
-   *
-   * @param object where 
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * This method returns no data.
-   */
-  public deleteDataSamples(id: any, where: any = undefined) {
-    let method: string = "DELETE";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples";
-    let routeParams: any = {
-      id: id
-    };
-    let postBody: any = {};
-    let urlParams: any = {};
-    if (where) urlParams.where = where;
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Counts dataSamples of record.
-   *
-   * @param any id record id
-   *
-   * @param object where Criteria to match model instances
+   * @param string containerName Container name
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -351,28 +67,28 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `` – `{}` - 
    */
-  public countDataSamples(id: any, where: any = undefined) {
-    let method: string = "GET";
+  public deleteContainer(containerName: any = undefined) {
+    let method: string = "DELETE";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples/count";
+    "/gridfs/:containerName";
     let routeParams: any = {
-      id: id
+      containerName: containerName
     };
     let postBody: any = {};
     let urlParams: any = {};
-    if (where) urlParams.where = where;
+    if (containerName) urlParams.containerName = containerName;
     let result = this.request(method, url, routeParams, urlParams, postBody);
     return result;
   }
 
   /**
-   * Queries tags of record.
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
    *
-   * @param any id record id
-   *
-   * @param object filter 
+   * @param string containerName Container name
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -380,31 +96,31 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
-  public getTags(id: any, filter: LoopBackFilter = undefined) {
+  public getFiles(containerName: any = undefined) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags";
+    "/gridfs/:containerName/files";
     let routeParams: any = {
-      id: id
+      containerName: containerName
     };
     let postBody: any = {};
     let urlParams: any = {};
-    if (filter) urlParams.filter = filter;
+    if (containerName) urlParams.containerName = containerName;
     let result = this.request(method, url, routeParams, urlParams, postBody);
     return result;
   }
 
   /**
-   * Creates a new instance in tags of this model.
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
    *
-   * @param any id record id
+   * @param string containerName Container name
    *
-   * @param object data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
+   * @param string fileId File id
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -412,57 +128,33 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
-  public createTags(id: any, data: any = undefined) {
-    let method: string = "POST";
+  public getFile(containerName: any = undefined, fileId: any = undefined) {
+    let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags";
+    "/gridfs/:containerName/files/:fileId";
     let routeParams: any = {
-      id: id
-    };
-    let postBody: any = {
-      data: data
-    };
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Deletes all tags of this model.
-   *
-   * @param any id record id
-   *
-   * @param object where 
-   *
-   * @returns object An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * This method returns no data.
-   */
-  public deleteTags(id: any, where: any = undefined) {
-    let method: string = "DELETE";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags";
-    let routeParams: any = {
-      id: id
+      containerName: containerName,
+      fileId: fileId
     };
     let postBody: any = {};
     let urlParams: any = {};
-    if (where) urlParams.where = where;
+    if (containerName) urlParams.containerName = containerName;
+    if (fileId) urlParams.fileId = fileId;
     let result = this.request(method, url, routeParams, urlParams, postBody);
     return result;
   }
 
   /**
-   * Counts tags of record.
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
    *
-   * @param any id record id
+   * @param string containerName Container name
    *
-   * @param object where Criteria to match model instances
+   * @param string fileId File id
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -470,18 +162,125 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `` – `{}` - 
    */
-  public countTags(id: any, where: any = undefined) {
-    let method: string = "GET";
+  public deleteFile(containerName: any = undefined, fileId: any = undefined) {
+    let method: string = "DELETE";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags/count";
+    "/gridfs/:containerName/files/:fileId";
     let routeParams: any = {
-      id: id
+      containerName: containerName,
+      fileId: fileId
     };
     let postBody: any = {};
     let urlParams: any = {};
-    if (where) urlParams.where = where;
+    if (containerName) urlParams.containerName = containerName;
+    if (fileId) urlParams.fileId = fileId;
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param object data Request data.
+   *
+   *  - `containerName` – `{string}` - Container name
+   *
+   *  - `req` – `{object}` - 
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Gridfs` object.)
+   * </em>
+   */
+  public upload(containerName: any = undefined, req: any = undefined) {
+    let method: string = "POST";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/gridfs/:containerName/upload";
+    let routeParams: any = {
+      containerName: containerName
+    };
+    let postBody: any = {
+      containerName: containerName,
+      req: req
+    };
+    let urlParams: any = {};
+    if (containerName) urlParams.containerName = containerName;
+    if (req) urlParams.req = req;
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param string containerName Container name
+   *
+   * @param string fileId File id
+   *
+   * @param object res 
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public download(containerName: any = undefined, fileId: any = undefined, res: any = undefined) {
+    let method: string = "GET";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/gridfs/:containerName/download/:fileId";
+    let routeParams: any = {
+      containerName: containerName,
+      fileId: fileId
+    };
+    let postBody: any = {};
+    let urlParams: any = {};
+    if (containerName) urlParams.containerName = containerName;
+    if (fileId) urlParams.fileId = fileId;
+    if (res) urlParams.res = res;
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param string containerName Container name
+   *
+   * @param object req 
+   *
+   * @param object res 
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public downloadContainer(containerName: any = undefined, req: any = undefined, res: any = undefined) {
+    let method: string = "GET";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/gridfs/:containerName/zip";
+    let routeParams: any = {
+      containerName: containerName
+    };
+    let postBody: any = {};
+    let urlParams: any = {};
+    if (containerName) urlParams.containerName = containerName;
+    if (req) urlParams.req = req;
+    if (res) urlParams.res = res;
     let result = this.request(method, url, routeParams, urlParams, postBody);
     return result;
   }
@@ -499,20 +298,20 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
   public create(data: any = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record";
+    "/gridfs";
     let routeParams: any = {};
     let postBody: any = {
       data: data
     };
     let urlParams: any = {};
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
+    return result.map((instance: Gridfs) => new Gridfs(instance));
   }
 
   /**
@@ -528,20 +327,20 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
   public upsert(data: any = undefined) {
     let method: string = "PUT";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record";
+    "/gridfs";
     let routeParams: any = {};
     let postBody: any = {
       data: data
     };
     let urlParams: any = {};
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
+    return result.map((instance: Gridfs) => new Gridfs(instance));
   }
 
   /**
@@ -557,13 +356,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
   public replaceOrCreate(data: any = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/replaceOrCreate";
+    "/gridfs/replaceOrCreate";
     let routeParams: any = {};
     let postBody: any = {
       data: data
@@ -588,13 +387,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
   public upsertWithWhere(where: any = undefined, data: any = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/upsertWithWhere";
+    "/gridfs/upsertWithWhere";
     let routeParams: any = {};
     let postBody: any = {
       data: data
@@ -602,7 +401,7 @@ export class RecordApi extends BaseLoopBackApi {
     let urlParams: any = {};
     if (where) urlParams.where = where;
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
+    return result.map((instance: Gridfs) => new Gridfs(instance));
   }
 
   /**
@@ -621,7 +420,7 @@ export class RecordApi extends BaseLoopBackApi {
   public exists(id: any) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/exists";
+    "/gridfs/:id/exists";
     let routeParams: any = {
       id: id
     };
@@ -644,13 +443,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
   public findById(id: any, filter: LoopBackFilter = undefined) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id";
+    "/gridfs/:id";
     let routeParams: any = {
       id: id
     };
@@ -658,7 +457,7 @@ export class RecordApi extends BaseLoopBackApi {
     let urlParams: any = {};
     if (filter) urlParams.filter = filter;
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
+    return result.map((instance: Gridfs) => new Gridfs(instance));
   }
 
   /**
@@ -676,13 +475,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
   public replaceById(id: any, data: any = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/replace";
+    "/gridfs/:id/replace";
     let routeParams: any = {
       id: id
     };
@@ -705,20 +504,20 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
   public find(filter: LoopBackFilter = undefined) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record";
+    "/gridfs";
     let routeParams: any = {};
     let postBody: any = {};
     let urlParams: any = {};
     if (filter) urlParams.filter = filter;
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instances: Array<Record>) =>
-        instances.map((instance: Record) => new Record(instance))
+    return result.map((instances: Array<Gridfs>) =>
+        instances.map((instance: Gridfs) => new Gridfs(instance))
     );
   }
 
@@ -733,19 +532,19 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
   public findOne(filter: LoopBackFilter = undefined) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/findOne";
+    "/gridfs/findOne";
     let routeParams: any = {};
     let postBody: any = {};
     let urlParams: any = {};
     if (filter) urlParams.filter = filter;
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instance: Record) => new Record(instance));
+    return result.map((instance: Gridfs) => new Gridfs(instance));
   }
 
   /**
@@ -766,7 +565,7 @@ export class RecordApi extends BaseLoopBackApi {
   public updateAll(where: any = undefined, data: any = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/update";
+    "/gridfs/update";
     let routeParams: any = {};
     let postBody: any = {
       data: data
@@ -788,13 +587,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
   public deleteById(id: any) {
     let method: string = "DELETE";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id";
+    "/gridfs/:id";
     let routeParams: any = {
       id: id
     };
@@ -820,7 +619,7 @@ export class RecordApi extends BaseLoopBackApi {
   public count(where: any = undefined) {
     let method: string = "GET";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/count";
+    "/gridfs/count";
     let routeParams: any = {};
     let postBody: any = {};
     let urlParams: any = {};
@@ -832,7 +631,7 @@ export class RecordApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param any id record id
+   * @param any id gridfs id
    *
    * @param object data Request data.
    *
@@ -844,13 +643,13 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
   public updateAttributes(id: any, data: any = undefined) {
     let method: string = "PUT";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id";
+    "/gridfs/:id";
     let routeParams: any = {
       id: id
     };
@@ -879,7 +678,7 @@ export class RecordApi extends BaseLoopBackApi {
    */
   public createChangeStream() {
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/change-stream";
+    "/gridfs/change-stream";
     let subject = new Subject();
     if (typeof EventSource !== 'undefined') {
       let emit   = (msg: any) => subject.next(JSON.parse(msg.data));
@@ -891,72 +690,6 @@ export class RecordApi extends BaseLoopBackApi {
     }
     return subject.asObservable();
   }
-  /**
-   * Creates a new instance in dataSamples of this model.
-   *
-   * @param any id record id
-   *
-   * @param object data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns object[] An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public createManyDataSamples(id: any, data: Array<any> = undefined) {
-    let method: string = "POST";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/dataSamples";
-    let routeParams: any = {
-      id: id
-    };
-    let postBody: any = {
-      data: data
-    };
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
-  /**
-   * Creates a new instance in tags of this model.
-   *
-   * @param any id record id
-   *
-   * @param object data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns object[] An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
-   * </em>
-   */
-  public createManyTags(id: any, data: Array<any> = undefined) {
-    let method: string = "POST";
-    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record/:id/tags";
-    let routeParams: any = {
-      id: id
-    };
-    let postBody: any = {
-      data: data
-    };
-    let urlParams: any = {};
-    let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result;
-  }
-
   /**
    * Create a new instance of the model and persist it into the data source.
    *
@@ -970,29 +703,29 @@ export class RecordApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Record` object.)
+   * This usually means the response is a `Gridfs` object.)
    * </em>
    */
   public createMany(data: Array<any> = undefined) {
     let method: string = "POST";
     let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/record";
+    "/gridfs";
     let routeParams: any = {};
     let postBody: any = {
       data: data
     };
     let urlParams: any = {};
     let result = this.request(method, url, routeParams, urlParams, postBody);
-    return result.map((instances: Array<Record>) =>
-        instances.map((instance: Record) => new Record(instance))
+    return result.map((instances: Array<Gridfs>) =>
+        instances.map((instance: Gridfs) => new Gridfs(instance))
     );
   }
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Record`.
+   * i.e. `Gridfs`.
    */
   public getModelName() {
-    return "Record";
+    return "Gridfs";
   }
 }
