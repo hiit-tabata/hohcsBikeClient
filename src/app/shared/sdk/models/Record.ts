@@ -19,6 +19,7 @@ export interface RecordInterface {
   sensorIds?: string;
   bleAddress?: string;
   labelJson?: string;
+  labeledDate?: string;
   Bike?: string;
   Inattention?: boolean;
   Rest?: boolean;
@@ -59,6 +60,7 @@ export class Record implements RecordInterface {
   sensorIds: string;
   bleAddress: string;
   labelJson: string;
+  labeledDate: string;
   Bike: string;
   Inattention: boolean;
   Rest: boolean;

@@ -29,6 +29,26 @@ export class RecordComponent {
     private downloadingData = false;
     private durationString:string="";
 
+    private LABELS:string[] = [
+        "Bike",
+        "Inattention",
+        "Rest",
+        "Test_complete",
+        "Hip_Pelvic_Shift",
+        "Hip_Leave_Sit",
+        "Hip_Pendulum_Movement",
+        "Hip_Disconnection_Left",
+        "Hip_Disconnection_Right",
+        "Trunk_Lean_Stably",
+        "Trunk_Lean_Evenly",
+        "Trunk_Fall_Like_Pattern",
+        "Trunk_Pendulum",
+        "Fatigue",
+        "Trunk_Leave_The_Lean",
+        "Trunk_Disconnection_Left",
+        "Trunk_Disconnection_Right",
+        "Leg_coordinated"
+    ];
 
     private calDataOption=[{
         name:"hall sensor relative time",
@@ -144,4 +164,15 @@ export class RecordComponent {
     }
 
     keyDownListener:any;
+
+
+    private getLabelString(fieldName){
+        if(this.record[fieldName] == undefined || this.record[fieldName]  == "")
+            return "Not Yet Labeled";
+        if(this.record[fieldName] === true)
+            return "True";
+        if(this.record[fieldName] === false)
+            return "False";
+        return this.record[fieldName];
+    }
 }

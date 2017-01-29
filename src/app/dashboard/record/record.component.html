@@ -27,6 +27,20 @@
     </div>
   </div>
 </div>
+
+<p-panel header="Labels" [toggleable]="true">
+  <table style="width:100%">
+    <tr>
+      <th>Label Name</th>
+      <th>Value</th>
+    </tr>
+    <tr *ngFor="let label of LABELS; let i = index;">
+      <td>{{label}}</td>
+      <td>{{getLabelString(label)}}</td>
+    </tr>
+  </table>
+</p-panel>
+
 <div class="card">
   <RecordCharts [dataStr]="this.dataStr"></RecordCharts>
 </div>

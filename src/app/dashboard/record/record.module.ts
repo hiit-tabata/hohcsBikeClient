@@ -10,6 +10,12 @@ import { RouterModule }             from '@angular/router';
 import { EditRecordComponent } from "./editRecord.component"
 import { FormsModule }   from '@angular/forms';
 import { QuillEditorModule } from 'ng2-quill-editor';
+import { TabsModule } from 'ng2-bootstrap';
+import {InputSwitchModule} from 'primeng/primeng';
+import {TriStateCheckboxModule} from 'primeng/primeng';
+import {DropdownModule} from 'primeng/primeng';
+import {PanelModule} from 'primeng/primeng';
+
 
 @NgModule({
     imports: [
@@ -18,7 +24,12 @@ import { QuillEditorModule } from 'ng2-quill-editor';
         RecordChartsModule,
         RouterModule,
         QuillEditorModule,
-        FormsModule
+        FormsModule,
+        TabsModule,
+        InputSwitchModule,
+        TriStateCheckboxModule,
+        DropdownModule,
+        PanelModule
     ],
     declarations: [
         RecordComponent,

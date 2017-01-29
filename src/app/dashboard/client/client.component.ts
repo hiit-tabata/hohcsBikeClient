@@ -25,7 +25,8 @@ interface QrCodeJson{
 
 @Component({
     selector: 'client',
-    templateUrl: './client.component.html'
+    templateUrl: './client.component.html',
+    styleUrls: ['./client.component.scss']
 })
 
 export class ClientComponent implements OnInit, OnDestroy {
@@ -36,6 +37,21 @@ export class ClientComponent implements OnInit, OnDestroy {
     private duration:number = 1200; //2 mins
     private keyDownListener:any;
     private advanceUser:boolean = false;
+    private LABELS:string[] = [
+        "Dementia",
+        "Stroke",
+        "Leg_Surgery",
+        "Hospitalization_Past_History",
+        "Hospitalization_Recent_Event",
+        "Hospitalization_No_Significant_History",
+        "Fall_Past_History",
+        "Fall_Recent_Event",
+        "Fall_No_Significant_History",
+        "Waking_ability",
+        "Mobilize_From_Chair",
+        "Hip",
+        "Trunk"
+    ];
 
     constructor(
         private clientApi:ClientApi,
@@ -123,5 +139,15 @@ export class ClientComponent implements OnInit, OnDestroy {
         err=>{
             console.log(err);
         });
+    }
+
+    private getLabelString(fieldName){
+        if(this.client[fieldName] == undefined || this.client[fieldName]  == "")
+            return "Not Yet Labeled";
+        if(this.client[fieldName] === true)
+            return "True";
+        if(this.client[fieldName] === false)
+            return "False";
+        return this.client[fieldName];
     }
 }

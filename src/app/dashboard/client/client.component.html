@@ -11,13 +11,35 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-6">
+    <div class="col-4">
       <div #qrCode></div>
     </div>
-    <div class="col-6">
-      <h4>Remarks:</h4>
-      <div [innerHTML]="client.remarks || 'loading'">
-      </div>
+    <div class="col-8">
+      <tabset>
+        <tab heading="Remarks">
+          <h4>Remarks:</h4>
+          <div [innerHTML]="client.remarks || 'loading/ do not have any remarks'"></div>
+        </tab>
+        <tab [disabled]="!client.labeledDate">
+          <template tabHeading>Labels</template>
+          <div class="container">
+            <div class="row labelContianer">
+              <div class="col-12">
+                <table style="width:100%">
+                  <tr>
+                    <th>Label Name</th>
+                    <th>Value</th>
+                  </tr>
+                  <tr *ngFor="let label of LABELS; let i = index;">
+                    <td>{{label}}</td>
+                    <td>{{getLabelString(label)}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </tab>
+      </tabset>
     </div>
   </div>
 </div>

@@ -18,6 +18,7 @@ import { SDKModule } from './shared/sdk/index';
 import { AuthModule } from './shared/auth/auth.module';
 
 import { AuthGuard } from './shared/auth/AuthGuard';
+import { TabsModule } from 'ng2-bootstrap/tabs';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AuthGuard } from './shared/auth/AuthGuard';
 		DashboardModule,
 		SharedModule.forRoot(),
     SDKModule.forRoot(),
+    TabsModule.forRoot(),
     AuthModule.forRoot()
   ],
   providers: [

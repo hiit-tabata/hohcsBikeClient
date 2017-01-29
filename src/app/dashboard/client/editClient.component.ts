@@ -7,18 +7,32 @@ import { Router, ActivatedRoute, Params }            from '@angular/router';
 
 @Component({
     selector: 'editClient-component',
-    template: `
-    <a class="btn btn-primary" routerLink="../" >Back</a>
-    <quill-editor [(ngModel)]="editorContent"
-          [config]="editorConfig"
-          (ready)="onEditorCreated($event)"
-          (change)="onContentChanged($event)"></quill-editor>
-    <button *ngIf="changed" class="btn btn-primary"  (click)="submitChanges()" >Submit Changes</button>
-    `
+    templateUrl: './edit.client.component.html'
 })
 
 export class EditClientComponent {
     client:Client;
+    Waking_ability_options = [{label:'Select Options', value:null},
+                              {label:'High_performer', value:"High_performer"},
+                              {label:'Walk_Unaided', value:"Walk_Unaided"},
+                              {label:'Walk_With_Stick', value:"Walk_With_Stick"},
+                              {label:'Walk_With_Quadripod', value:"Walk_With_Quadripod"},
+                              {label:'Walk_With_Frame', value:"Walk_With_Frame"},
+                              {label:'Cannot_Walk', value:"Cannot_Walk"},];
+    Mobilize_From_Chair_options = [{label:'Select Options', value:null},
+                              {label:'Independent', value:"Independent"},
+                              {label:'Mild_Assistance', value:"Mild_Assistance"},
+                              {label:'CANNOT', value:"CANNOT"},];
+    Hip_options= [{label:'Select Options', value:null},
+                              {label:'Stable', value:"Stable"},
+                              {label:'Stable_But_High_Risk_Feature', value:"Stable_But_High_Risk_Feature"},
+                              {label:'Functional_Deficit_But_Well_Adapted', value:"Functional_Deficit_But_Well_Adapted"},
+                              {label:'Unstable', value:"Unstable"},];
+    Trunk_options = [{label:'Select Options', value:null},
+                              {label:'Stable', value:"Stable"},
+                              {label:'Stable_But_High_Risk_Feature', value:"Stable_But_High_Risk_Feature"},
+                              {label:'Functional_Deficit_But_Well_Adapted', value:"Functional_Deficit_But_Well_Adapted"},
+                              {label:'Unstable', value:"Unstable"},];
 
     private qillObj:any;
     changed:boolean = false;
@@ -30,6 +44,8 @@ export class EditClientComponent {
     private editorConfig = {
         placeholder: "输入公告内容，支持html"
     };
+
+    private willUpdateClient = new Client();
 
     constructor(
         private clientApi:ClientApi,
@@ -74,12 +90,20 @@ export class EditClientComponent {
     }
 
     submitChanges(){
-        let temp = new Client();
-        temp.remarks = this.editorContent;
-        this.clientApi.updateAttributes(this.client.id,temp)
+        // let temp = new Client();
+        // temp.remarks = this.editorContent;
+        this.client.remarks = this.editorContent;
+        this.clientApi.updateAttributes(this.client.id,this.client)
         .subscribe(res=>{
             console.log(res);
             this.changed = false;
+            this.getClient();
         },err=>{console.log(err);})
+    }
+
+    onLabelChanges(e){
+        this.client.labeledDate = "" + new Date().getTime();
+        console.log(this.client);
+        this.changed = true;
     }
 }

@@ -1,0 +1,241 @@
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <a class="btn btn-primary pull-right" routerLink="../" >Back</a>
+        <h2>Edit Record  {{record.id||"downloading"}}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h4>Label in Record:</h4>
+      </div>
+      <div class="col-6">
+        <li class="list-group-item">
+          <label>Bike:</label>
+          <p-dropdown
+            class="pull-right"
+            (onChange)="onLabelChanges($event)"
+            [options]="Bike_options"
+            [(ngModel)]="record.Bike"></p-dropdown>
+        </li>
+        <li class="list-group-item">
+          Inattention:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Inattention"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          Rest:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Rest"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          Test_complete:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Test_complete"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          Hip_Pelvic_Shift:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Hip_Pelvic_Shift"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          Hip_Leave_Sit:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Hip_Leave_Sit"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          Hip_Pendulum_Movement:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Hip_Pendulum_Movement"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          Hip_Disconnection_Left:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Hip_Disconnection_Left"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          Hip_Disconnection_Right:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Hip_Disconnection_Right"></p-triStateCheckbox>
+        </li>
+      </div>
+      <div class="col-6">
+        <li class="list-group-item">
+          Trunk_Lean_Stably:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Trunk_Lean_Stably"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          <label>Trunk_Lean_Evenly:</label>
+          <p-dropdown
+            class="pull-right"
+            (onChange)="onLabelChanges($event)"
+            [options]="Trunk_Lean_Evenly_options"
+            [(ngModel)]="record.Trunk_Lean_Evenly"></p-dropdown>
+        </li>
+        <li class="list-group-item">
+          Trunk_Fall_Like_Pattern:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Trunk_Fall_Like_Pattern"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          Trunk_Pendulum:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Trunk_Pendulum"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          Trunk_Leave_The_Lean:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Trunk_Leave_The_Lean"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          Trunk_Disconnection_Left:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Trunk_Disconnection_Left"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          Trunk_Disconnection_Right:
+          <p-triStateCheckbox
+            (onChange)="onLabelChanges($event)"
+            [(ngModel)]="record.Trunk_Disconnection_Right"></p-triStateCheckbox>
+        </li>
+        <li class="list-group-item">
+          <label>Leg_coordinated:</label>
+          <p-dropdown
+            class="pull-right"
+            (onChange)="onLabelChanges($event)"
+            [options]="Leg_coordinated_options"
+            [(ngModel)]="record.Leg_coordinated"></p-dropdown>
+        </li>
+      </div>
+      <!-- <div class="col-6">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Dementia:
+            <p-triStateCheckbox
+              (onChange)="onLabelChanges($event)"
+              [(ngModel)]="record.Dementia"></p-triStateCheckbox>
+          </li>
+          <li class="list-group-item">
+            <label>Stroke:</label>
+            <p-triStateCheckbox
+              class="pull-right"
+              (onChange)="onLabelChanges($event)"
+              [(ngModel)]="client.Stroke"></p-triStateCheckbox>
+          </li>
+          <li class="list-group-item">
+            <label>Leg_Surgery:</label>
+            <p-triStateCheckbox
+              class="pull-right"
+              (onChange)="onLabelChanges($event)"
+              [(ngModel)]="client.Leg_Surgery"></p-triStateCheckbox>
+          </li>
+          <li class="list-group-item">
+            <label>Hospitalization_Past_History:</label>
+            <p-triStateCheckbox
+              class="pull-right"
+              (onChange)="onLabelChanges($event)"
+              [(ngModel)]="client.Hospitalization_Past_History"></p-triStateCheckbox>
+          </li>
+          <li class="list-group-item">
+            <label>Hospitalization_Recent_Event:</label>
+            <p-triStateCheckbox
+              class="pull-right"
+              (onChange)="onLabelChanges($event)"
+              [(ngModel)]="client.Hospitalization_Recent_Event"></p-triStateCheckbox>
+          </li>
+          <li class="list-group-item">
+            <label>Hospitalization_No_Significant_History:</label>
+            <p-triStateCheckbox
+              class="pull-right"
+              (onChange)="onLabelChanges($event)"
+              [(ngModel)]="client.Hospitalization_No_Significant_History"></p-triStateCheckbox>
+          </li>
+          <li class="list-group-item">
+            <label>Fall_Past_History:</label>
+            <p-triStateCheckbox
+              class="pull-right"
+              (onChange)="onLabelChanges($event)"
+              [(ngModel)]="client.Fall_Past_History"></p-triStateCheckbox>
+          </li>
+        </ul>
+      </div>
+      <div class="col-6">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <label>Fall_No_Significant_History:</label>
+            <p-triStateCheckbox
+              class="pull-right"
+              (onChange)="onLabelChanges($event)"
+              [(ngModel)]="client.Fall_No_Significant_History"></p-triStateCheckbox>
+          </li>
+          <li class="list-group-item">
+            <label>Fall_Recent_Event:</label>
+            <p-triStateCheckbox
+              class="pull-right"
+              (onChange)="onLabelChanges($event)"
+              [(ngModel)]="client.Fall_Recent_Event"></p-triStateCheckbox>
+          </li>
+          <li class="list-group-item">
+            <label>Waking_ability:</label>
+            <p-dropdown
+              class="pull-right"
+              (onChange)="onLabelChanges($event)"
+              [options]="Waking_ability_options"
+              [(ngModel)]="client.Waking_ability"></p-dropdown>
+          </li>
+          <li class="list-group-item">
+            <label>Mobilize_From_Chair:</label>
+            <p-dropdown
+              class="pull-right"
+              (onChange)="onLabelChanges($event)"
+              [options]="Mobilize_From_Chair_options"
+              [(ngModel)]="client.Mobilize_From_Chair"></p-dropdown>
+          </li>
+          <li class="list-group-item">
+            <label>Hip:</label>
+            <p-dropdown
+              class="pull-right"
+              (onChange)="onLabelChanges($event)"
+              [options]="Hip_options"
+              [(ngModel)]="client.Hip"></p-dropdown>
+          </li>
+          <li class="list-group-item">
+            <label>Trunk:</label>
+            <p-dropdown
+              class="pull-right"
+              (onChange)="onLabelChanges($event)"
+              [options]="Trunk_options"
+              [(ngModel)]="client.Trunk"></p-dropdown>
+          </li>
+        </ul>
+      </div> -->
+
+    </div>
+    <div class="row">
+    </div>
+  </div>
+
+  <h4>Remarks:</h4>
+  <quill-editor [(ngModel)]="editorContent"
+        [config]="editorConfig"
+        (ready)="onEditorCreated($event)"
+        (change)="onContentChanged($event)"></quill-editor>
+  <div class="container">
+    <div class="row">
+      <button *ngIf="changed" class="btn btn-primary pull-right"  (click)="submitChanges()" >Submit Changes</button>
+    </div>
+  </div>

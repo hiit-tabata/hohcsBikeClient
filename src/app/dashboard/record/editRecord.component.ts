@@ -7,14 +7,8 @@ import { Router, ActivatedRoute, Params }            from '@angular/router';
 
 @Component({
     selector: 'record-edit-component',
-    template: `
-    <a class="btn btn-primary" routerLink="../" >Back</a>
-    <quill-editor [(ngModel)]="editorContent"
-          [config]="editorConfig"
-          (ready)="onEditorCreated($event)"
-          (change)="onContentChanged($event)"></quill-editor>
-    <button *ngIf="changed" class="btn btn-primary"  (click)="submitChanges()" >Submit Changes</button>
-    `
+    templateUrl: './Edit.Record.component.html',
+    styleUrls: ['./Edit.Record.component.scss']
 })
 
 export class EditRecordComponent {
@@ -31,6 +25,22 @@ export class EditRecordComponent {
         placeholder: "输入公告内容，支持html"
     };
 
+    private Bike_options = [{label:'Select Options', value:null},
+                            {label:'Bike_Strong', value:"Bike_Strong"},
+                            {label:'Bike_Moderate', value:"Bike_Moderate"},
+                            {label:'Bike_Weak', value:"Bike_Weak"},];
+    private Trunk_Lean_Evenly_options
+        = [{label:'Select Options', value:null},
+        {label:'Evenly', value:"Evenly"},
+        {label:'Left_Predorminantly', value:"Left_Predorminantly"},
+        {label:'Right_Predominantly', value:"Right_Predominantly"},]
+        
+    private Leg_coordinated_options
+        = [{label:'Select Options', value:null},
+        {label:'Coordinated', value:"Coordinated"},
+        {label:'Most_Of_The_Time', value:"Most_Of_The_Time"},
+        {label:'Not_Coordinated', value:"Not_Coordinated"},]
+
     constructor(
         private clientApi:ClientApi,
         private recordApi:RecordApi,
@@ -39,10 +49,10 @@ export class EditRecordComponent {
     ) {
         this.record = new Record()
         this.record.remarks = "";
-        this.getClient();
+        this.getRecord();
     }
 
-    getClient(){
+    getRecord(){
         this.route.params.forEach((params: Params) => {
             this.recordId = params['id'];
             this.recordApi.findById(this.recordId,{})
@@ -74,12 +84,16 @@ export class EditRecordComponent {
     }
 
     submitChanges(){
-        let temp = new Client();
-        temp.remarks = this.editorContent;
-        this.recordApi.updateAttributes(this.record.id,temp)
+        this.record.remarks = this.editorContent;
+        this.recordApi.updateAttributes(this.record.id, this.record)
         .subscribe(res=>{
             console.log(res);
             this.changed = false;
+            this.getRecord();
         },err=>{console.log(err);})
+    }
+    onLabelChanges(e){
+        this.record.labeledDate = "" + new Date().getTime();
+        this.changed = true;
     }
 }
