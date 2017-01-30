@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { CarouselModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { RouterModule }             from '@angular/router';
 import { BrowserModule }  from '@angular/platform-browser';
+import { TimeFixModule }     from '../../shared/utils/timeFix';
 
 
 @NgModule({
@@ -11,9 +12,12 @@ import { BrowserModule }  from '@angular/platform-browser';
         CommonModule,
         CarouselModule,
         RouterModule,
-        BrowserModule
+        BrowserModule,
+        TimeFixModule
     ],
-    declarations: [HomeComponent],
+    declarations: [
+        HomeComponent,
+    ],
     exports: [HomeComponent]
 })
 

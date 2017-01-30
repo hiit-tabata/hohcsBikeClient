@@ -19,7 +19,7 @@
         </a>
       </th>
       <td>{{record.dateTime | date: 'yMMMdjms'}}</td>
-      <td>{{record.duration}}</td>
+      <td>{{record.duration | formatMilliSec}}</td>
     </tr>
   </tbody>
 </table>

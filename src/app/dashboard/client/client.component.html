@@ -58,7 +58,7 @@
   <tbody>
     <tr *ngFor="let record of records" >
       <th scope="row"><a routerLink="{{'/dashboard/record/'+record.id}}" >{{record.dateTime  | date: 'yMMMdjms'}}</a></th>
-      <td>{{record.duration}}</td>
+      <td>{{record.duration | formatMilliSec}}</td>
       <td>{{record.ip}}</td>
       <td>{{record.location}}</td>
       <td>{{record.deviceId}}</td>
