@@ -22,7 +22,7 @@ import {DropdownModule} from 'primeng/primeng';
         RouterModule,
         BrowserModule,
         FormsModule,
-        TimeFixModule
+        TimeFixModule,
         QuillEditorModule,
         TabsModule,
         InputSwitchModule,
