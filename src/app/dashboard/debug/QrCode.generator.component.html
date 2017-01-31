@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <h4>QRcode</h4>
+      <div #qrCode></div>
+    </div>
+    <div class="col-8">
+      <textarea
+      class="JsonStrTextArea"
+      (onChange)="onQrStrChange($event)"
+      [(ngModel)] = "stringEditor" ></textarea>
+      <button (click)="onQrStrChange()">Generate</button>
+    </div>
+  </div>
+</div>

@@ -15,11 +15,9 @@ interface QrCodeJson{
     "type":   string,
     "email": string,
     "password":string,
-    "demo":boolean,
     "duration": number,
     "theme":string,
-    "log": boolean,
-    "saveLocal": boolean
+    "log": boolean
 }
 
 
