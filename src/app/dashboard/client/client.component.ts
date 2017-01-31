@@ -113,11 +113,9 @@ export class ClientComponent implements OnInit, OnDestroy {
             "type":   "gameOption",
             "email": email,
             "password":password,
-            "demo":false,
             "duration": this.duration,
             "theme":"loop",
-            "log": true,
-            "saveLocal": true
+            "log": true
             }
     }
 
