@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
-  BASE_URL: "http://localhost:4600",
+  BASE_URL: "http://hohcs.holmantai.net",
+  // BASE_URL: "http://localhost:4600",
   API_VERSION: "api"
 };

@@ -63,7 +63,7 @@ export class RecordChartsComponent implements OnChanges{
                         text: null
                     },
                     min: 0,
-                    max: 1024
+                    max: 2000
                 },
                 plotOptions: {
                     area: {

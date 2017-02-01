@@ -123,7 +123,7 @@ export class RecordComponent {
                 console.log(localDbRecord);
 
                 let filter:LoopBackFilter={include:["client"]}
-                if(localDbRecord != undefined){
+                if(localDbRecord != undefined ){
                     filter.fields = {data:false};
                 }
 
@@ -136,16 +136,17 @@ export class RecordComponent {
                         console.log("I got record");
                         console.dir(_record);
                         this.durationString = formatMilliToMins(_record.duration*1);
-                        if(localDbRecord!= undefined){
-                            this.dataStr = localDbRecord.data;
-                            this.recordBuffer.put(_record)
-                            .subscribe(res=>{console.log("sucess")}, err=>{console.log(err);})
-                        }else{
+                        if(localDbRecord== undefined){
                             this.dataStr = _record.data;
                             if(Date.now() - new Date(_record.dateTime).getTime() > 1900000 ){
                                 this.recordBuffer.add(_record)
                                 .subscribe(res=>{console.log("sucess")}, err=>{console.log(err);})
                             }
+                        }else{
+                            this.dataStr = localDbRecord.data;
+                            _record.data = localDbRecord.data;
+                            this.recordBuffer.put(_record)
+                            .subscribe(res=>{console.log("sucess")}, err=>{console.log(err);})
                         }
                         console.log("record from server");
                         console.dir(_record);

@@ -34,7 +34,7 @@ export class EditRecordComponent {
         {label:'Evenly', value:"Evenly"},
         {label:'Left_Predorminantly', value:"Left_Predorminantly"},
         {label:'Right_Predominantly', value:"Right_Predominantly"},]
-        
+
     private Leg_coordinated_options
         = [{label:'Select Options', value:null},
         {label:'Coordinated', value:"Coordinated"},
@@ -85,6 +85,7 @@ export class EditRecordComponent {
 
     submitChanges(){
         this.record.remarks = this.editorContent;
+        delete this.record.data;
         this.recordApi.updateAttributes(this.record.id, this.record)
         .subscribe(res=>{
             console.log(res);
