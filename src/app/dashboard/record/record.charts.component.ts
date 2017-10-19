@@ -22,6 +22,10 @@ export class RecordChartsComponent implements OnChanges{
     private data:dataSample[] = [];
     options:any[] = [];
     private hoverEnable:boolean = false;
+    stats={
+      total_steps: 0,
+      steps_s:0
+    }
 
     constructor() {
         const sensorName = ["left back","right back","right hip", "left hip", "hall"];
@@ -162,7 +166,48 @@ export class RecordChartsComponent implements OnChanges{
         for(let i = 0; i < this.charts.length; i++){
             this.charts[i].series[0].setData(dataSet[i]);
         }
+        this.cal_hall_sensor_stats(dataSet[4])
     }
 
+    cal_hall_sensor_stats(hallData){
+      let total:number = 0;
+      for(let f of hallData){
+        if(f[1] > 0.8){
+          total+=1;
+        }
+      }
+      if(!hallData[0]) return
+
+      let cur_max:number = 0;
+      let frame_start = hallData[0][0];
+      let cur = 0
+      for(let f of hallData){
+          if(f[0] - frame_start > 1000 ){
+              if(f[0] - frame_start  < 2000){
+                  frame_start = frame_start+1000;
+                  if(cur > cur_max){
+                      cur_max = cur;
+                  }
+              }else{
+                  frame_start = f[0];
+                  if(cur > cur_max){
+                      cur_max = cur;
+                  }
+              }
+              cur = 0
+          }
+          if(f[1] > 0.8){
+              cur++;
+          }
+      }
+      if(cur > cur_max){
+          cur_max = cur;
+      }
+
+      this.stats = {
+        total_steps: total,
+        steps_s: cur_max
+      }
+    }
 
 }

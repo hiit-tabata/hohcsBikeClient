@@ -1,3 +1,10 @@
+<div>
+  <h3>Stats.</h3>
+  <h6>Number of steps: {{stats.total_steps}}</h6>
+  <h6>Max steps/s: {{stats.steps_s}}</h6>
+
+</div>
+
 <div (mouseover)="onChartOver($event)">
   <chart [options]="options[0]" (load)="saveChart($event.context, 0)">
     <series (hide)="onSeriesHide($event.context)">
