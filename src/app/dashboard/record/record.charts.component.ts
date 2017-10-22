@@ -182,9 +182,9 @@ export class RecordChartsComponent implements OnChanges{
       let frame_start = hallData[0][0];
       let cur = 0
       for(let f of hallData){
-          if(f[0] - frame_start > 1000 ){
-              if(f[0] - frame_start  < 2000){
-                  frame_start = frame_start+1000;
+          if(f[0] - frame_start > 10000 ){
+              if(f[0] - frame_start  < 20000){
+                  frame_start = frame_start+10000;
                   if(cur > cur_max){
                       cur_max = cur;
                   }
